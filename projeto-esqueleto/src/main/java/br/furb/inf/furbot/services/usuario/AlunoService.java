@@ -37,9 +37,6 @@ public class AlunoService extends ServiceImpl<Aluno> {
 
 	}
 	
-	public Long obterTotalAlunos(UUID turmaId) {
-		return alunoRepository.contarAlunos(turmaId);
-	}
 
 	@Transactional
 	public void alterarSenha(AlteraSenhaDto alteraSenhaDto) {

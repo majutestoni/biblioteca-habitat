@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import br.furb.inf.furbot.models.usuario.Aluno;
 
 @Repository
-public interface AlunoRepository extends JpaRepository<Aluno, UUID>, AlunoCustomRepository {
+public interface AlunoRepository extends JpaRepository<Aluno, UUID> {
 
 }

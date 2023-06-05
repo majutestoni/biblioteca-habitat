@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.furb.inf.furbot.models.usuario.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, UUID>, UsuarioCustomRepository {
+public interface UsuarioRepository extends JpaRepository<Usuario, UUID>, br.furb.inf.furbot.repositories.Repository<Usuario> {
 
 	Usuario findByUsuario(String usuario);
 	

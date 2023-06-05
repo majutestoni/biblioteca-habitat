@@ -9,7 +9,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import br.furb.inf.furbot.enuns.Genero;
 import br.furb.inf.furbot.models.ModelImpl;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,7 +40,6 @@ public class Aluno extends ModelImpl {
 
 	private String email;
 
-	private Genero genero;
 
 	@Column(name = "turma_nome")
 	private String turmaNome;

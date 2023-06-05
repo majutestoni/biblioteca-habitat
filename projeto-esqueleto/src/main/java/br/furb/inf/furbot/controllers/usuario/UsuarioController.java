@@ -20,20 +20,20 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/usuarios")
 public class UsuarioController extends ControllerImpl<Usuario> {
 
-	@Autowired
-	private UsuarioService service;
+    @Autowired
+    private UsuarioService service;
 
-	@Override
-	public Service<Usuario> getService() {
-		return service;
-	}
+    @Override
+    public Service<Usuario> getService() {
+        return service;
+    }
 
-	@Operation(summary = "Retorna o usuário online", responses = {
-			@ApiResponse(responseCode = "200", description = "Quando houver usuário online"),
-			@ApiResponse(responseCode = "401", description = "Quando não houver usuário online") })
-	@GetMapping("/logado")
-	public ResponseEntity<Usuario> buscar() {
-		return ResponseEntity.ok().body(this.service.buscarUsuarioLogado());
-	}
+    @Operation(summary = "Retorna o usuário online", responses = {
+            @ApiResponse(responseCode = "200", description = "Quando houver usuário online"),
+            @ApiResponse(responseCode = "401", description = "Quando não houver usuário online")})
+    @GetMapping("/logado")
+    public ResponseEntity<Usuario> buscar() {
+        return ResponseEntity.ok().body(this.service.buscarUsuarioLogado());
+    }
 
 }

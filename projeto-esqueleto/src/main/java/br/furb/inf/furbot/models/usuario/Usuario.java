@@ -9,7 +9,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.furb.inf.furbot.enuns.Genero;
 import br.furb.inf.furbot.enuns.Perfil;
 import br.furb.inf.furbot.models.ModelImpl;
 import lombok.AllArgsConstructor;
@@ -22,7 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Usuario extends ModelImpl {
+public class  Usuario extends ModelImpl {
 
 	private static final long serialVersionUID = 1L;
 
@@ -50,14 +49,5 @@ public class Usuario extends ModelImpl {
 	@Column(nullable = true, name = "data_nascimento")
 	private Date dataNascimento;
 
-	@Column(nullable = true)
-	private Genero genero;
-
-	@PrePersist
-	private void aoCriar() {
-		if (this.getGenero() == null) {
-			this.setGenero(Genero.OUTRO);
-		}
-	}
 
 }

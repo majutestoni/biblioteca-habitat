@@ -19,63 +19,54 @@ import br.furb.inf.furbot.services.usuario.UsuarioService;
 @MappedSuperclass
 public abstract class ModelImpl implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	@Column(name = "uuid", columnDefinition = "char(36)")
-	@Type(type = "org.hibernate.type.UUIDCharType")
-	protected UUID id;
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "uuid", columnDefinition = "char(36)")
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    protected UUID id;
 
-	@Column(nullable = true, name = "criado_em")
-	private Date criadoEm;
+    @Column(nullable = true, name = "criado_em")
+    private Date criadoEm;
 
-	@Column(nullable = true, name = "atualizado_em")
-	private Date atualizadoEm;
+    @Column(nullable = true, name = "atualizado_em")
+    private Date atualizadoEm;
 
-	@Column(nullable = true, name = "criado_por")
-	private String criadoPor;
+    @PrePersist
+    private void onCreate() {
+        criadoEm = new Date();
+        atualizadoEm = new Date();
+    }
 
-	@Column(nullable = true, name = "atualizado_por")
-	private String atualizadoPor;
+    @PreUpdate
+    private void onUpdate() {
+        atualizadoEm = new Date();
+    }
 
-	@PrePersist
-	private void onCreate() {
-		criadoEm = new Date();
-		atualizadoEm = new Date();
-		criadoPor = UsuarioService.usuarioLogado();
-		atualizadoPor = UsuarioService.usuarioLogado();
-	}
+    public Date getCriadoEm() {
+        return criadoEm;
+    }
 
-	@PreUpdate
-	private void onUpdate() {
-		atualizadoEm = new Date();
-		atualizadoPor = UsuarioService.usuarioLogado();
-	}
+    public void setCriadoEm(Date criadoEm) {
+        this.criadoEm = criadoEm;
+    }
 
-	public Date getCriadoEm() {
-		return criadoEm;
-	}
+    public Date getAtualizadoEm() {
+        return atualizadoEm;
+    }
 
-	public void setCriadoEm(Date criadoEm) {
-		this.criadoEm = criadoEm;
-	}
+    public void setAtualizadoEm(Date atualizadoEm) {
+        this.atualizadoEm = atualizadoEm;
+    }
 
-	public Date getAtualizadoEm() {
-		return atualizadoEm;
-	}
+    public UUID getId() {
+        return id;
+    }
 
-	public void setAtualizadoEm(Date atualizadoEm) {
-		this.atualizadoEm = atualizadoEm;
-	}
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
 }
