@@ -41,14 +41,10 @@ public class UsuarioService extends ServiceImpl<Usuario> {
 		if (usuario.getSenha() == null && usuario.getSenha().isEmpty()) {
 			throw new BadRequestException("Usuário deve conter senha!");
 		}
+
+
+
 		usuario.setSenha(bCript.encode(usuario.getSenha()));
-		if (usuario.getPerfil() == null) {
-			usuario.setPerfil(Perfil.JOGADOR);
-		}
-		if (usuario.getPerfil().equals(Perfil.PROFESSOR)
-				&& (usuario.getEmail() == null || usuario.getEmail().isEmpty())) {
-			throw new BadRequestException("Usuário do tipo professor deve conter e-mail!");
-		}
 		return super.create(usuario);
 	}
 

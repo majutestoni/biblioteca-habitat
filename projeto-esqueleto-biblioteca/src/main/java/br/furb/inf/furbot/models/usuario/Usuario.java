@@ -2,20 +2,19 @@ package br.furb.inf.furbot.models.usuario;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.furb.inf.furbot.enuns.Genero;
 import br.furb.inf.furbot.enuns.Perfil;
 import br.furb.inf.furbot.models.ModelImpl;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -24,7 +23,10 @@ import lombok.Setter;
 @Entity
 public class Usuario extends ModelImpl {
 
+	// criar endereço criar foto de perfil
+
 	private static final long serialVersionUID = 1L;
+
 
 	@NotNull(message = "Nome não pode ser núlo")
 	@NotEmpty(message = "Nome não pode ser vazio")
@@ -38,26 +40,16 @@ public class Usuario extends ModelImpl {
 
 	private String senha;
 
-	@Column(nullable = true)
+	private Boolean admin;
+
+	@NotNull
 	private String email;
 
-	@Column(nullable = true)
-	private Perfil perfil;
+	private String fone;
 
-	@Column(nullable = true)
-	private Boolean alteraSenha;
+	private String instituição;
 
-	@Column(nullable = true, name = "data_nascimento")
-	private Date dataNascimento;
+	private String clube;
 
-	@Column(nullable = true)
-	private Genero genero;
-
-	@PrePersist
-	private void aoCriar() {
-		if (this.getGenero() == null) {
-			this.setGenero(Genero.OUTRO);
-		}
-	}
 
 }
