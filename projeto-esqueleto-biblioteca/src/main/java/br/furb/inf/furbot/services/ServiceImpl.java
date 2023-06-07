@@ -30,6 +30,7 @@ public abstract class ServiceImpl<T> implements Service<T> {
 		}
 		return getRepository().save(entity);
 	}
+
 	
 	@Transactional
 	public T createIgnoreCompany(T entity) {

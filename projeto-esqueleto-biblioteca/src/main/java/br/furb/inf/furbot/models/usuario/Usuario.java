@@ -1,13 +1,11 @@
 package br.furb.inf.furbot.models.usuario;
 
-import java.util.Date;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.furb.inf.furbot.enuns.Perfil;
+import br.furb.inf.furbot.models.endereco.Endereco;
 import br.furb.inf.furbot.models.ModelImpl;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +21,7 @@ import lombok.Setter;
 @Entity
 public class Usuario extends ModelImpl {
 
-	// criar endereço criar foto de perfil
+	// criar foto de perfil
 
 	private static final long serialVersionUID = 1L;
 
@@ -51,5 +49,8 @@ public class Usuario extends ModelImpl {
 
 	private String clube;
 
+	@ManyToOne
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
 
 }

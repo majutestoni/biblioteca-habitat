@@ -24,6 +24,7 @@ public class ExceptionHandlerInterceptor {
 
 		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(),
 				HttpStatus.BAD_REQUEST.value(), System.currentTimeMillis());
+
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 
@@ -44,9 +45,9 @@ public class ExceptionHandlerInterceptor {
 	}
 
 	@org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<StandardError> validation(MethodArgumentNotValidException e, HttpServletRequest request) {
+	public ResponseEntity<ValidationError> validation(MethodArgumentNotValidException e, HttpServletRequest request) {
 
-		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), -1,
+		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(), -1,
 				System.currentTimeMillis());
 		for (FieldError x : e.getBindingResult().getFieldErrors()) {
 			err.addError(x.getField(), x.getDefaultMessage());
