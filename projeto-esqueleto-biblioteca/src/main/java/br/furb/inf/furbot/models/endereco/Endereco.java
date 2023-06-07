@@ -19,7 +19,9 @@ import java.util.UUID;
 @Entity
 public class Endereco extends ModelImpl {
 
+
     public Endereco(String uuid) {
+
         setId(UUID.fromString(uuid));
     }
 

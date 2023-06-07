@@ -2,6 +2,7 @@ package br.furb.inf.furbot.services.usuario;
 
 import java.util.UUID;
 
+import br.furb.inf.furbot.models.endereco.Endereco;
 import br.furb.inf.furbot.services.endereco.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -48,6 +49,15 @@ public class UsuarioService extends ServiceImpl<Usuario> {
 		if((entity.getAdmin() == null || !entity.getAdmin()) && (entity.getEndereco() == null)){
 			throw new BadRequestException("Usuário deve conter endereco!");
 		}
+
+		if(entity.getAdmin() == null || !entity.getAdmin()){
+			Endereco endereco = enderecoService.get(entity.getEndereco().getId());
+
+			if(endereco == null){
+				throw new BadRequestException("Endereco invalido!");
+			}
+		}
+
 		entity.setSenha(bCript.encode(entity.getSenha()));
 		return super.create(entity);
 	}
