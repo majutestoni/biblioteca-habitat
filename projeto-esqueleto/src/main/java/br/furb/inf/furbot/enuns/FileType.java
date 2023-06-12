@@ -1,6 +1,0 @@
-package br.furb.inf.furbot.enuns;
-
-public enum FileType {
-    SITE, BOOK, DISSERTATION_THESES, SCIENTIFIC_ARTICLES, PART_BOOK, COURSES, TCC, EDUCATION_PRODUCTS, REPORTS;
-
-}
