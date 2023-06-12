@@ -1,0 +1,140 @@
+.show-submenu {
+  min-width: 365px;
+  width: 365px;
+  --width: 365px !important;
+}
+
+.hide-submenu {
+  min-width: 95px;
+  width: 95px;
+}
+
+.fixed-menu {
+  width: 95px;
+  --width: 95px;
+}
+
+.fixed-submenu {
+  width: 260px;
+  position: absolute;
+  margin-left: 100px;
+  overflow: auto;
+}
+
+.border-right {
+  border-right: solid 1px var(--ion-color-step-200) !important;
+}
+
+.border-bottom {
+  border-bottom: solid 1px var(--ion-color-step-200) !important;
+}
+
+.fixed-menu div:hover,
+.fixed-menu div:active {
+  transition: all 0.3s;
+  transform: scale(1.1);
+}
+
+ion-menu ion-list {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  color: var(--ion-color-primary-contrast);
+}
+
+ion-menu ion-content {
+  --padding-end: 0px;
+  --padding-bottom: 20px;
+}
+
+ion-menu ion-note {
+  margin-bottom: 45px;
+}
+
+ion-menu ion-list-header h2 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  font-size: 17.5px;
+}
+
+ion-menu ion-list#inbox-list ion-list-header {
+  min-height: 20px;
+}
+
+ion-menu ion-list#labels-list ion-list-header {
+  font-size: 14px;
+  margin-bottom: 18px;
+  min-height: 26px;
+}
+
+ion-menu ion-item {
+  --padding-start: 15px;
+  --padding-end: 0px;
+  border-radius: 0px;
+  font-size: 10px !important;
+}
+
+ion-icon {
+  font-size: 30px !important;
+  margin-left: 0px;
+  color: #5a5a5af3 !important;
+}
+
+.fixed-menu ion-icon,
+.menu-label {
+  color: var(--color-menu);
+}
+
+.sub-icon {
+  font-size: 20px !important;
+}
+
+ion-menu ion-item.selected {
+  border-radius: 0px;
+}
+
+ion-menu ion-item.selected ion-icon,
+ion-menu ion-item.selected ion-label {
+  color: var(--ion-color-primary);
+}
+
+ion-menu ion-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+ion-note {
+  display: inline-block;
+  font-size: 13px;
+  width: 100%;
+  margin-top: -8px;
+  position: absolute;
+  color: var(--ion-color-medium-shade);
+}
+
+.divider-label {
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-left: 10px;
+  padding-bottom: 10px;
+  color: rgba(#757575, 0.5) !important;
+}
+
+.no-left {
+  --padding-start: 0px!important;
+}
+
+em {
+  color: rgb(88, 88, 88);
+}
+
+.submenu-label {
+  color: var(--ion-color-step-450);
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1400px) {
+  .menu-label {
+    font-size: 11px!important;
+  }
+}
+

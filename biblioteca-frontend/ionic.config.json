@@ -1,0 +1,7 @@
+{
+  "name": "furbot-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

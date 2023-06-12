@@ -1,0 +1,60 @@
+<ion-content>
+  <ion-content class="container-fluid">
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="col-md-4 offset-md-4">
+          <ion-list>
+            <ion-item>
+              <ion-label>{{'furbot.idioma' | translate}}</ion-label>
+              <ion-select (ionChange)="alterarIdioma($event)" interface="popover">
+                <ion-select-option selected value="pt">{{'furbot.idioma.pt' | translate}}</ion-select-option>
+                <ion-select-option value="en">{{'furbot.idioma.en' | translate}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div class="col-md-12 text-center mt-4 mb-4 title_box">
+          <div text-center>
+            <h1 style="font-size: 55px;">{{'furbot.titulo' | translate}}</h1>
+          </div>
+          <div text-center>
+            <ion-img style="height: 60px; width: 60px; margin: auto;" class="pb-2 pt-1" src="assets/icon/favicon.png">
+            </ion-img>
+          </div>
+        </div>
+        <br>
+        <div padding class="col-md-6 offset-md-3 col-lg-4 offset-md-4">
+          <div class="col-md-12">
+            <span class="p-float-label">
+              <input class="w-100" type="text" pInputText formControlName="usuario" autocomplete="off">
+              <label class="required">{{'furbot.login.nome' | translate}}</label>
+            </span>
+            <app-validador [control]="formGroup.get('usuario')"
+              [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthUsuario' | translate)}">
+            </app-validador>
+          </div>
+          <div class="col-md-12 mt-3">
+            <span class="p-float-label">
+              <input class="w-100" type="text" pInputText formControlName="senha" autocomplete="off">
+              <label class="required">{{'furbot.login.senha' | translate}}</label>
+            </span>
+            <app-validador [control]="formGroup.get('senha')"
+              [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthSenha' | translate)}">
+            </app-validador>
+          </div>
+          <div class="text-center">
+            <ion-button (click)="acessar()" [disabled]="isLoading" size="medium" type="submit" class="mt-4">
+              {{(!isLoading ? 'furbot.login.entrar' : 'furbot.aguarde') | translate}}</ion-button>
+            <br><br>
+            <div style="text-align: center">
+              <ion-button color="dark" fill="clear" size="small" [routerLink]="['/auth/criar-conta']">
+                {{'furbot.usuario.cadastrar' | translate}}</ion-button>
+              <ion-button color="dark" fill="clear" size="small" [routerLink]="['/usuario/resetar']">
+                {{'furbot.usuario.resetar.senha' | translate}}</ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-content>

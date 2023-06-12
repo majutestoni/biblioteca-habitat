@@ -22,94 +22,98 @@ import br.furb.inf.furbot.services.ServiceImpl;
 @Service
 public class UsuarioService extends ServiceImpl<Usuario> {
 
-	@Autowired
-	private UsuarioRepository repository;
+    @Autowired
+    private UsuarioRepository repository;
 
-	@Autowired
-	private EnderecoService enderecoService;
+    @Autowired
+    private EnderecoService enderecoService;
 
-	@Autowired
-	private BCryptPasswordEncoder bCript;
+    @Autowired
+    private BCryptPasswordEncoder bCript;
 
-	@Override
-	public JpaRepository<Usuario, UUID> getRepository() {
-		return repository;
-	}
+    @Override
+    public JpaRepository<Usuario, UUID> getRepository() {
+        return repository;
+    }
 
-	@Override
-	@Transactional
-	public Usuario create(Usuario entity) {
-		if (obterPeloUsuario(entity.getUsuario()) != null) {
-			throw new ConflictedException("Já existe um usuário com este nome!");
-		}
-		if (entity.getSenha() == null && entity.getSenha().isEmpty()) {
-			throw new BadRequestException("Usuário deve conter senha!");
-		}
+    @Override
+    @Transactional
+    public Usuario create(Usuario entity) {
+        if (obterPeloUsuario(entity.getUsuario()) != null) {
+            throw new ConflictedException("Já existe um usuário com este nome!");
+        }
+        if (entity.getSenha() == null && entity.getSenha().isEmpty()) {
+            throw new BadRequestException("Usuário deve conter senha!");
+        }
 
-		if((entity.getAdmin() == null || !entity.getAdmin()) && (entity.getEndereco() == null)){
-			throw new BadRequestException("Usuário deve conter endereco!");
-		}
+        if ((entity.getAdmin() == null || !entity.getAdmin()) && (entity.getEndereco() == null)) {
+            throw new BadRequestException("Usuário deve conter endereco!");
+        }
 
-		if(entity.getAdmin() == null || !entity.getAdmin()){
-			Endereco endereco = enderecoService.get(entity.getEndereco().getId());
+        if (entity.getAdmin() == null || !entity.getAdmin()) {
+            Endereco endereco = enderecoService.get(entity.getEndereco().getId());
 
-			if(endereco == null){
-				throw new BadRequestException("Endereco invalido!");
-			}
-		}
+            if (endereco == null) {
+                throw new BadRequestException("Endereco invalido!");
+            }
+        }
 
-		entity.setSenha(bCript.encode(entity.getSenha()));
-		return super.create(entity);
-	}
+        if (entity.getAdmin() == null) {
+            entity.setAdmin(false);
+        }
 
-	@Override
-	@Transactional
-	public Usuario update(UUID id, Usuario usuario) {
+        entity.setSenha(bCript.encode(entity.getSenha()));
+        return super.create(entity);
+    }
 
-		if (!buscarUsuarioLogado().getId().equals(id)) {
-			throw new NotAuthorizationException("Seu usuário nao pode fazer isso");
-		}
-		if (usuario.getSenha() != null) {
-			usuario.setSenha(bCript.encode(usuario.getSenha()));
-		} else {
-			usuario.setSenha(buscarUsuarioLogado().getSenha());
-		}
-		return super.update(id, usuario);
-	}
+    @Override
+    @Transactional
+    public Usuario update(UUID id, Usuario usuario) {
 
-	@Override
-	public void validator(Usuario entity) {
+        if (!buscarUsuarioLogado().getId().equals(id)) {
+            throw new NotAuthorizationException("Seu usuário nao pode fazer isso");
+        }
+        if (usuario.getSenha() != null) {
+            usuario.setSenha(bCript.encode(usuario.getSenha()));
+        } else {
+            usuario.setSenha(buscarUsuarioLogado().getSenha());
+        }
+        return super.update(id, usuario);
+    }
 
-	}
+    @Override
+    public void validator(Usuario entity) {
 
-	@Transactional(readOnly = true)
-	public Usuario obterPeloUsuario(String usuario) {
-		return repository.findByUsuario(usuario);
-	}
+    }
 
-	public Usuario buscarUsuarioLogado() {
-		UserSS ss = this.authenticated();
-		if (ss == null) {
-			throw new NotAuthorizationException("Usuário não autenticado");
-		}
-		return this.get(ss.getId());
-	}
+    @Transactional(readOnly = true)
+    public Usuario obterPeloUsuario(String usuario) {
+        return repository.findByUsuario(usuario);
+    }
 
-	public static String usuarioLogado() {
-		UserSS user = null;
-		try {
-			user = (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return user != null ? user.getUsername() : "Não autenticado";
-	}
+    public Usuario buscarUsuarioLogado() {
+        UserSS ss = this.authenticated();
+        if (ss == null) {
+            throw new NotAuthorizationException("Usuário não autenticado");
+        }
+        return this.get(ss.getId());
+    }
 
-	private UserSS authenticated() {
-		try {
-			return (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		} catch (Exception e) {
-			return null;
-		}
-	}
+    public static String usuarioLogado() {
+        UserSS user = null;
+        try {
+            user = (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return user != null ? user.getUsername() : "Não autenticado";
+    }
+
+    private UserSS authenticated() {
+        try {
+            return (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

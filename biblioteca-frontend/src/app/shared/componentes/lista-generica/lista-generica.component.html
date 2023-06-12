@@ -1,0 +1,275 @@
+<div [class]="defaultClass">
+  <ion-card mode="ios" style="border: none; box-shadow: none;" class="pt-0 mt-3">
+    <ion-card-header class="p-0 pt-3 pb-3" *ngIf="canHeader && !isMobile">
+      <ion-item lines="none" class="pl-0">
+        <ion-button color="primary" *ngIf="showAddButton" slot="start" size="small" (click)="onAdd()">
+          <ion-icon name="search-outline" class="mr-2"></ion-icon> {{addButtonLabel}}
+        </ion-button>
+        <ion-button *ngIf="seccondaryButton" slot="start" color="medium" size="small" (click)="onAdd()">
+          <ion-icon name="add-outline" class="mr-2"></ion-icon> {{seccondaryButtonLabel}}
+        </ion-button>
+        <ion-label slot="start">
+          <ion-card-title style="font-size: 30px;" class="title-table">
+            {{ title }}
+            <ion-badge>{{ itens?.totalElementos }}</ion-badge>
+          </ion-card-title>
+          <ion-card-subtitle style="font-size: 12px; text-transform: none;">{{subtitle}}.</ion-card-subtitle>
+        </ion-label>
+        <ion-button *ngIf="canFilter" slot="end" fill="clear" (click)="openAndCloseFilter()">
+          {{'furbot.filtros' | translate}}
+          <ion-badge class="ml-2 mr-2" color="warning">{{doFilters().length}}</ion-badge>
+          <ion-icon name="chevron-{{showFilter ? 'up' : 'down'}}-outline"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="canFilter" slot="end" color="medium" fill="clear">
+          <span *ngIf="!isMobile">{{'furbot.ajuda' | translate}}</span>
+        </ion-button>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-header class="p-0 mb-2" *ngIf="canHeader && isMobile">
+      <ion-item lines="none" class="p-0 no-paddin-start">
+        <ion-label class="pl-0">
+          <ion-card-title style="font-size: 24px;" class="title-table">
+            {{ title }}
+            <ion-badge>
+              {{ itens?.totalElementos }}
+            </ion-badge>
+          </ion-card-title>
+          <ion-card-subtitle style="font-size: 12px;">{{subtitle}}.</ion-card-subtitle>
+        </ion-label>
+      </ion-item>
+      <div class="p-0 text-left ml-1 no-paddin-start">
+        <ion-button class="pl-0 no-paddin-start" *ngIf="canFilter" fill="clear" size="small"
+          (click)="openAndCloseFilter()">
+          Filtros
+          <ion-badge class="ml-2 mr-2" color="warning">{{doFilters().length}}</ion-badge>
+          <ion-icon name="chevron-{{showFilter ? 'up' : 'down'}}-outline"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="canFilter" color="medium" fill="clear" size="small">
+          Ajuda
+        </ion-button>
+      </div>
+    </ion-card-header>
+    <ion-card-content class="p-0">
+      <div *ngIf="showFilter">
+        <ion-card>
+          <ion-card-content>
+            <div class="row">
+              <div class="col-lg-4 mt-2" *ngFor="let item of getTableFilter(); let i = index">
+                <span class="p-float-label" *ngIf="item.filterType === getFilterType().STRING">
+                  <input id="float-input" class="w-100" (keypress)="onKey($event)" [(ngModel)]="item.filterStr"
+                    type="text" pInputText autocomplete="off">
+                  <label for="float-input">{{item.name}}</label>
+                </span>
+                <div *ngIf="item.filterType === getFilterType().PRICE" class="p-inputgroup">
+                  <span class="p-float-label">
+                    <p-inputNumber mode="currency" (keypress)="onKey($event)" [(ngModel)]="item.filterStr"
+                      id="priceGroup" class="w-100" inputId="priceGroup" inputStyleClass="w-100" currency="BRL">
+                    </p-inputNumber>
+                    <label for="priceGroup">{{item.name}}</label>
+                  </span>
+                  <span (click)="optionsFilter($event, item)" class="p-inputgroup-addon"
+                    style="cursor: pointer; width: 150px; padding: 0px;">
+                    <span *ngIf="!item.filterSequenceValue || item.filterSequenceValue === filterSequence.RIGHT">Maior
+                      que
+                      <ion-icon name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;">
+                      </ion-icon>
+                    </span>
+                    <span *ngIf="item.filterSequenceValue === filterSequence.LEFT">Menor que<ion-icon
+                        name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;"></ion-icon>
+                    </span>
+                    <span *ngIf="item.filterSequenceValue === filterSequence.EQUALS">Igual a <ion-icon
+                        name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;"></ion-icon>
+                    </span>
+                  </span>
+                </div>
+                <div *ngIf="item.filterType === getFilterType().NUMBER" class="p-inputgroup">
+                  <span class="p-float-label">
+                    <p-inputNumber mode="decimal" (keypress)="onKey($event)" [(ngModel)]="item.filterStr"
+                      id="priceGroup" class="w-100" inputId="priceGroup" inputStyleClass="w-100">
+                    </p-inputNumber>
+                    <label for="priceGroup">{{item.name}}</label>
+                  </span>
+                  <span (click)="optionsFilter($event, item)" class="p-inputgroup-addon"
+                    style="cursor: pointer; width: 150px; padding: 0px;">
+                    <span *ngIf="!item.filterSequenceValue || item.filterSequenceValue === filterSequence.RIGHT">Maior
+                      que
+                      <ion-icon name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;">
+                      </ion-icon>
+                    </span>
+                    <span *ngIf="item.filterSequenceValue === filterSequence.LEFT">Menor que<ion-icon
+                        name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;"></ion-icon>
+                    </span>
+                    <span *ngIf="item.filterSequenceValue === filterSequence.EQUALS">Igual a <ion-icon
+                        name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;"></ion-icon>
+                    </span>
+                  </span>
+                </div>
+                <div *ngIf="item.filterType === getFilterType().DATETIME" class="p-inputgroup">
+                  <span class="p-float-label">
+                    <p-calendar appendTo="body" dateFormat="dd/mm/yy" (keypress)="onKey($event)"
+                      [(ngModel)]="item.filterStr" id="priceGroup" class="w-100" inputId="priceGroup"
+                      inputStyleClass="w-100"></p-calendar>
+                    <label for="priceGroup">{{item.name}}</label>
+                  </span>
+                  <span (click)="optionsFilter($event, item)" class="p-inputgroup-addon"
+                    style="cursor: pointer; width: 150px; padding: 0px;">
+                    <span *ngIf="!item.filterSequenceValue || item.filterSequenceValue === filterSequence.RIGHT">Maior
+                      que
+                      <ion-icon name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;">
+                      </ion-icon>
+                    </span>
+                    <span *ngIf="item.filterSequenceValue === filterSequence.LEFT">Menor que<ion-icon
+                        name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;"></ion-icon>
+                    </span>
+                    <span *ngIf="item.filterSequenceValue === filterSequence.EQUALS">Igual a <ion-icon
+                        name="chevron-down" style="margin-top: 3px; margin-left: 5px; float: right;"></ion-icon>
+                    </span>
+                  </span>
+                </div>
+                <span class="p-float-label" *ngIf="item.filterType === getFilterType().SELECT">
+                  <p-dropdown id="float-dropdown" appendTo="body" [(ngModel)]="item.filterStr"
+                    [options]="item.filterSelectOptions" class="w-100" optionLabel="name" [showClear]="false"
+                    [autoDisplayFirst]="false"></p-dropdown>
+                  <label class="dropdown">{{item.name}}</label>
+                </span>
+                <span class="p-float-label" *ngIf="item.filterType === getFilterType().LOOKUP">
+                  <!-- <app-lookup [service]="item.filterLookupOptions.service" [fieldName]="item.name"
+                    (completeMethod)="onLookupSearch($event, item.filterLookupOptions)" [suggestions]="lookupSuggestion"
+                    (onSelect)="item.filterStr = $event">
+                  </app-lookup> -->
+                </span>
+              </div>
+            </div>
+            <div class="text-left mt-3">
+              <ion-button size="small" (click)="list()">{{ 'furbot.filtrar' | translate }}</ion-button>
+              <ion-button fill="clear" size="small" color="medium" (click)="clear()">{{ 'furbot.remover' | translate
+                }}</ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <!--
+        <ion-list class="pl-0 no-paddin-start" *ngIf="isMobile">
+        <ion-item class="pl-0 mb-1 no-paddin-start" lines="none" *ngFor="let item of itens?.conteudo">
+          <ion-checkbox *ngIf="canSelect && !isLookup" mode="ios" slot="start" class="pr-0 mr-3"
+            [(ngModel)]="item.isSelect" (ngModelChange)="onSelectItem()"></ion-checkbox>
+          <ion-label style="font-size: 15px;" (click)="onEdit(item.id)">
+            <div *ngFor="let header of getTableBody()" class="{{item.align}} {{item.disableOrder ? '' : 'pointer'}}"
+              [ngStyle]="header.style ? header.style(item) : {}">
+              <div *ngIf="header.process && item[header.key]" [innerHTML]="htmlSerialize(header.process(item))"></div>
+              <span *ngIf="!header.process && item[header.key]">{{item[header.key]}}</span>
+              <span *ngIf="!item[header.key] && !header.mobileHiddenOnUnexist"
+                class="not-informed">{{header.mobileEmptyValue ? header.mobileEmptyValue
+                : 'Não informado'}}</span>
+            </div>
+          </ion-label>
+          <ion-buttons slot="end" class="text-right">
+            <ion-button *ngIf="!canActions && showActions && canEdit" (click)="onEdit(item.id)" fill="clear"
+              color="primary" size="small" slot="end">{{isLookup ? 'Selecionar' : ''}} <ion-icon
+                name="arrow-forward-outline">
+              </ion-icon>
+            </ion-button>
+            <ion-button
+              *ngIf="canActions && showActions && (!hideOptionsByField || (hideOptionsByField && hasHideAction(item)))"
+              (click)="onActions(item)" color="primary" slot="end" fill="clear" size="small">
+              {{actionsLabel}}
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+        <div class="text-center mt-5" lines="none" *ngIf="!isLoading && !itens?.conteudo?.length">
+          <ion-icon class="text-muted" name="file-tray-full-outline" style="font-size: 100px;"></ion-icon>
+          <ion-label>
+            <h2 class="mb-0 pb-0">Nenhum registro encontrado</h2>
+            <p class="text-muted ">Redefina seus filtros ou adicione um novo registro.</p>
+          </ion-label>
+        </div>
+        <div *ngIf="isLoading" class="text-center mt-5">
+          <ion-spinner mode="ios" color="primary"></ion-spinner>
+        </div>
+      </ion-list>
+       -->
+      <table class="table" *ngIf="!isMobile"
+        [ngClass]="{'mt-2': showFilter, 'table-hover': !isLoading && itens?.conteudo?.length}">
+        <thead>
+          <tr>
+            <th scope="col" *ngIf="canSelect && !isLookup" style="width: 60px;">
+              <ion-checkbox mode="md" [(ngModel)]="allSelect" (ngModelChange)="selectAll()"></ion-checkbox>
+            </th>
+            <th scope="col" (click)="changeOrder(i)" *ngFor="let item of getTableHeader(); let i = index"
+              [hidden]="item.hiddenInTable" class="{{item.align}} {{item.disableOrder ? '' : 'pointer'}}"
+              [ngStyle]="item.style ? item.style(item) : {}">
+              {{item.name}}
+              <ion-button [disabled]="item.disableOrder" class="p-0 mt-0" style="margin-top: -8px!important"
+                fill="clear" size="small" color="medium">
+                <ion-icon name="filter" *ngIf="!item.order"></ion-icon>
+                <ion-icon name="arrow-up" *ngIf="item.order === 'asc'"></ion-icon>
+                <ion-icon name="arrow-down" *ngIf="item.order === 'desc'"></ion-icon>
+              </ion-button>
+            </th>
+            <th scope="col" class="text-center">#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="isLoading">
+            <th [colSpan]="getTableHeader().length + 2" class="text-center">
+              <ion-spinner color="primary"></ion-spinner>
+            </th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr *ngIf="!isLoading && !itens?.conteudo?.length">
+            <th [colSpan]="getTableHeader().length + 2" class="text-center">
+              <ion-icon class="text-muted" name="file-tray-full-outline" style="font-size: 80px;"></ion-icon>
+              <h2 class="mb-0 pb-0">{{ 'furbot.nenhumRegistro' | translate }}</h2>
+              <p class="text-muted ">{{ 'furbot.nenhumRegistroSugestao' | translate }}</p>
+              <ion-button fill="clear" *ngIf="canAdd" (click)="onAdd()">{{ 'furbot.adicionar' | translate
+                }}</ion-button>
+            </th>
+          </tr>
+        </tbody>
+        <tbody *ngFor="let item of itens?.conteudo; let i = index">
+          <tr>
+            <td *ngIf="canSelect && !isLookup" style="width: 60px;">
+              <ion-checkbox mode="md" class="mt-2" [(ngModel)]="item.isSelect" (ngModelChange)="onSelectItem()">
+              </ion-checkbox>
+            </td>
+            <td [ngStyle]="header.style ? header.style(item) : {}" class="align-middle {{header.align}} pointer"
+              *ngFor="let header of tableBody" (click)="selectItem(item, header)">
+              <div *ngIf="header.process && item[header.key]" [innerHTML]="item[header.key]"></div>
+              <span *ngIf="!header.process && item[header.key]">{{item[header.key]}}</span>
+              <span *ngIf="!item[header.key]" class="not-informed">{{ 'furbot.naoInformado' | translate}}</span>
+            </td>
+            <td style="width: 100px;" class="align-middle">
+              <ion-button *ngIf="!canActions && showActions && canEdit" (click)="onEdit(item.id)" fill="clear"
+                size="small">{{isLookup ? 'Selecionar' : editLabel}} <ion-icon name="arrow-forward-outline"
+                  class="ml-2">
+                </ion-icon>
+              </ion-button>
+              <ion-button
+                *ngIf="canActions && showActions && (!hideOptionsByField || (hideOptionsByField && hasHideAction(item)))"
+                (click)="onActions(item)" fill="clear" size="small">
+                {{actionsLabel}}
+              </ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator *ngIf="!isMobile && (!hiddenPagination || hiddenPagination && itens?.totalElementos > 5)"
+        [disabled]="isLoading" #paginator [length]="itens?.totalElementos" [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPage($event)" aria-label="Select page">
+      </mat-paginator>
+    </ion-card-content>
+  </ion-card>
+</div>
+<ion-fab *ngIf="canAdd && !isLookup" vertical="bottom" [class]="!isMobile ? 'mr-3 mb-3' : 'mr-1 mb-1'" horizontal="end"
+  slot="fixed" style="position: fixed;">
+  <ion-fab-button (click)="onAdd()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-infinite-scroll *ngIf="isMobile" threshold="100px" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content loadingSpinner="crescent">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+<br *ngIf="!hiddenPagination"><br *ngIf="canAdd && !isMobile"><br *ngIf="canAdd && !isMobile"><br
+  *ngIf="canAdd && !isMobile">

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
     `uuid` char(36) NOT NULL,
     `atualizado_em` datetime(6) DEFAULT NULL,
     `criado_em` datetime(6) DEFAULT NULL,
-    `admin` bit(1) NOT NULL DEFAULT b'0',
+     admin BIT(1) DEFAULT 0,
     `email` varchar(255) DEFAULT NULL,
     `nome` varchar(150) NOT NULL,
     `senha` varchar(255) NOT NULL,

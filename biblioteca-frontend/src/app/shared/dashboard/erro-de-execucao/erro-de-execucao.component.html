@@ -1,0 +1,4 @@
+<p-chart *ngIf="!isLoading" type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>
+<div class="text-center">
+  <ion-spinner *ngIf="isLoading"></ion-spinner>
+</div>

@@ -8,10 +8,7 @@ import javax.validation.constraints.Size;
 import br.furb.inf.furbot.models.endereco.Endereco;
 import br.furb.inf.furbot.models.ModelImpl;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Getter
