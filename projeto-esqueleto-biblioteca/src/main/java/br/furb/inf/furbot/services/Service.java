@@ -14,5 +14,5 @@ public interface Service<T> {
 	T retrieve(UUID id);
 	void delete(UUID id);
 	void delete(T entity);
-	
+
 }

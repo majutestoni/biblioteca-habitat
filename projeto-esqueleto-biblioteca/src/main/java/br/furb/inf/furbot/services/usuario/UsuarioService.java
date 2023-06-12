@@ -2,6 +2,8 @@ package br.furb.inf.furbot.services.usuario;
 
 import java.util.UUID;
 
+import br.furb.inf.furbot.models.endereco.Endereco;
+import br.furb.inf.furbot.services.endereco.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.furb.inf.furbot.enuns.Perfil;
 import br.furb.inf.furbot.exceptions.BadRequestException;
 import br.furb.inf.furbot.exceptions.ConflictedException;
 import br.furb.inf.furbot.exceptions.NotAuthorizationException;
@@ -25,6 +26,9 @@ public class UsuarioService extends ServiceImpl<Usuario> {
 	private UsuarioRepository repository;
 
 	@Autowired
+	private EnderecoService enderecoService;
+
+	@Autowired
 	private BCryptPasswordEncoder bCript;
 
 	@Override
@@ -34,22 +38,28 @@ public class UsuarioService extends ServiceImpl<Usuario> {
 
 	@Override
 	@Transactional
-	public Usuario create(Usuario usuario) {
-		if (obterPeloUsuario(usuario.getUsuario()) != null) {
+	public Usuario create(Usuario entity) {
+		if (obterPeloUsuario(entity.getUsuario()) != null) {
 			throw new ConflictedException("Já existe um usuário com este nome!");
 		}
-		if (usuario.getSenha() == null && usuario.getSenha().isEmpty()) {
+		if (entity.getSenha() == null && entity.getSenha().isEmpty()) {
 			throw new BadRequestException("Usuário deve conter senha!");
 		}
-		usuario.setSenha(bCript.encode(usuario.getSenha()));
-		if (usuario.getPerfil() == null) {
-			usuario.setPerfil(Perfil.JOGADOR);
+
+		if((entity.getAdmin() == null || !entity.getAdmin()) && (entity.getEndereco() == null)){
+			throw new BadRequestException("Usuário deve conter endereco!");
 		}
-		if (usuario.getPerfil().equals(Perfil.PROFESSOR)
-				&& (usuario.getEmail() == null || usuario.getEmail().isEmpty())) {
-			throw new BadRequestException("Usuário do tipo professor deve conter e-mail!");
+
+		if(entity.getAdmin() == null || !entity.getAdmin()){
+			Endereco endereco = enderecoService.get(entity.getEndereco().getId());
+
+			if(endereco == null){
+				throw new BadRequestException("Endereco invalido!");
+			}
 		}
-		return super.create(usuario);
+
+		entity.setSenha(bCript.encode(entity.getSenha()));
+		return super.create(entity);
 	}
 
 	@Override
