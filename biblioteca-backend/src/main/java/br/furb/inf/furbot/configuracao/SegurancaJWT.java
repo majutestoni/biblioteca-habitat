@@ -41,11 +41,11 @@ public class SegurancaJWT extends WebSecurityConfigurerAdapter {
 			"/api/usuarios/{id}/alterar_senha" //
 	};
 
-	private static final String[] PUBLIC_MATCHERS_POST = { "/usuarios", "/login" };
+	private static final String[] PUBLIC_MATCHERS_POST = { "/usuarios", "/login"};
 
 	private static final String[] PUBLIC_MATCHER_GET = { "/*.js", "/*.js.map", "/*.html", "/", "/*.css", "/*.json",
 			"/*.woff2", "/*.woff", //
-			"/*.png", "/assets/**", "/svg/**", "/actuator/**" };
+			"/*.png", "/assets/**", "/svg/**", "/actuator/**", "/endereco/findAll/**"  };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

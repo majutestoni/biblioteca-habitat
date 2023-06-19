@@ -60,9 +60,9 @@ export class AuthPage implements OnInit {
 
         this.appStorageService.set(AppStorageService.KEY_STORAGE.logado, usuarioLogado);
         if (usuarioLogado.admin) {
-          this.router.navigate(['/professor']);// this.router.navigate(['/admin']);
+          this.router.navigate(['/home']);// this.router.navigate(['/admin']);
         } else {
-          this.router.navigate(['/aluno']);  // this.router.navigate(['/colab']);
+          this.router.navigate(['/home']);  // this.router.navigate(['/colab']);
         }
       } else {
         this.formGroup.markAllAsTouched();
