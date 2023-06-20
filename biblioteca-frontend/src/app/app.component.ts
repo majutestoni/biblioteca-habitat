@@ -46,20 +46,6 @@ export class AppComponent implements OnInit {
           if (!this.loggedUser) {
             this.loggedUser = this.appStorageService.get(AppStorageService.KEY_STORAGE.logado);
           }
-          if (this.loggedUser && this.loggedUser.perfil === 'PROFESSOR') {
-            this.appPages = [
-              { title: this.translateService.instant('furbot.dashboard'), url: '/professor/dashboard', icon: 'stats-chart' },
-              { title: this.translateService.instant('furbot.alunos'), url: '/professor/alunos', icon: 'people' },
-              { title: this.translateService.instant('furbot.escolas'), url: '/professor/escolas', icon: 'storefront' },
-              { title: this.translateService.instant('furbot.turmas'), url: '/professor/turmas', icon: 'file-tray-full' },
-              { title: this.translateService.instant('furbot.meuperfil'), url: '/professor/meu-usuario', icon: 'person' }
-            ];
-          } else {
-            this.appPages = [
-              { title: this.translateService.instant('furbot.dashboard'), url: '/aluno/dashboard', icon: 'stats-chart' },
-              { title: this.translateService.instant('furbot.meuperfil'), url: '/aluno/meu-usuario', icon: 'person' }
-            ];
-          }
           this.exitTitle = this.translateService.instant('furbot.sair');
         }
       }

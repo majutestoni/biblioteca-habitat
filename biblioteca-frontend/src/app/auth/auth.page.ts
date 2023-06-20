@@ -75,11 +75,6 @@ export class AuthPage implements OnInit {
 
   private async isLogged() {
     const usuario = this.appStorageService.get(AppStorageService.KEY_STORAGE.logado);
-    if (usuario && usuario.perfil === 'PROFESSOR') {
-      this.router.navigate(['/professor'], { relativeTo: this.route });
-    } else if (usuario) {
-      this.router.navigate(['/aluno'], { relativeTo: this.route });
-    }
 
     if (!usuario) {
       this.translateService.use('pt');
