@@ -28,7 +28,7 @@ export class CriarContaPage implements OnInit {
         private navController: NavController,
         private usuarioService: UsuarioService,
         private appErroService: AppErroService,
-        private enderecoService: EnderecoService
+        private enderecoService: EnderecoService,
     ) {}
 
     ngOnInit() {
@@ -198,4 +198,5 @@ export class CriarContaPage implements OnInit {
 
         this.formGroup.get('endereco').setValue(cidade);
     }
+
 }

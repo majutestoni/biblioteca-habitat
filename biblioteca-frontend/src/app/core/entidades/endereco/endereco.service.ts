@@ -23,14 +23,23 @@ export class EnderecoService extends EntityService<Endereco> {
         return this.http.get<Endereco[]>(`${environment.urlBackend}/endereco/findAll`);
     }
 
-
     findByPais(pais): Observable<Endereco[]> {
         return this.http.get<Endereco[]>(`${environment.urlBackend}/endereco/findAll/${pais}`);
     }
 
     findByEstado(estado): Observable<Endereco[]> {
-        return this.http.get<Endereco[]>(`${environment.urlBackend}/endereco/findAll/estado/${estado}`);
+        return this.http.get<Endereco[]>(
+            `${environment.urlBackend}/endereco/findAll/estado/${estado}`
+        );
+    }
+
+    cadastrar(body: CreateEndereco): Observable<Endereco> {
+        return this.http.post<Endereco>(`${environment.urlBackend}/endereco`,  body );
     }
 }
 
-
+export interface CreateEndereco {
+    cidade: string;
+    estadoOuProvincia: string;
+    pais: string;
+}

@@ -101,26 +101,25 @@
                             </app-validador>
                         </div>
                         <div class="col-md-6 mt-3 field">
-                                <mat-form-field appearance="outline" class="form">
-                                    <mat-label>{{'furbot.login.senha' | translate}}</mat-label>
-                                    <input
-                                        matInput
-                                        [type]="showSenha ? 'password' : 'text'"
-                                        formControlName="senha"
-                                    />
-                                    <button
-                                        mat-icon-button
-                                        matSuffix
-                                        (click)="showSenha = !showSenha"
-                                        [attr.aria-label]="'Hide password'"
-                                        [attr.aria-pressed]="showSenha"
+                            <mat-form-field appearance="outline" class="form">
+                                <mat-label>{{'furbot.login.senha' | translate}}</mat-label>
+                                <input
+                                    matInput
+                                    [type]="showSenha ? 'password' : 'text'"
+                                    formControlName="senha"
+                                />
+                                <button
+                                    mat-icon-button
+                                    matSuffix
+                                    (click)="showSenha = !showSenha"
+                                    [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="showSenha"
+                                >
+                                    <mat-icon
+                                        >{{showSenha ? 'visibility_off' : 'visibility'}}</mat-icon
                                     >
-                                        <mat-icon
-                                            >{{showSenha ? 'visibility_off' :
-                                            'visibility'}}</mat-icon
-                                        >
-                                    </button>
-                                </mat-form-field>
+                                </button>
+                            </mat-form-field>
                             <app-validador
                                 [control]="formGroup.get('senha')"
                                 [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthSenha' | translate)}"
@@ -192,6 +191,11 @@
                                 <label class="required"
                                     >{{'formEndereco.cidade' | translate}}</label
                                 >
+                            </span>
+                        </div>
+                        <div class="end col-md-6 field mt-3">
+                            <span class="p-float-label">
+                                Não achou seu endereço? cadastre <a class="ml-1" routerLink="/auth/criar-endereco" > aqui</a>
                             </span>
                         </div>
                     </form>

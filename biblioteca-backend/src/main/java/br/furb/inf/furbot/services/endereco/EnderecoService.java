@@ -1,5 +1,6 @@
 package br.furb.inf.furbot.services.endereco;
 
+import br.furb.inf.furbot.exceptions.ConflictedException;
 import br.furb.inf.furbot.models.endereco.Endereco;
 import br.furb.inf.furbot.repositories.endereco.EnderecoRepository;
 import br.furb.inf.furbot.services.ServiceImpl;
@@ -34,21 +35,25 @@ public class EnderecoService extends ServiceImpl<Endereco> {
         entity.setEstadoOuProvincia(entity.getEstadoOuProvincia().toUpperCase());
         entity.setPais(entity.getPais().toUpperCase());
 
+        Endereco valida = enderecoRepository.findByPaisAndEstadoOuProvinciaAndCidade(entity.getPais(), entity.getEstadoOuProvincia(), entity.getCidade());
+
+        if (valida != null) {
+            throw new ConflictedException("Este endereco já existe!");
+        }
         return super.create(entity);
     }
 
-    public List<Endereco> findByPais(String pais){
+    public List<Endereco> findByPais(String pais) {
         return this.enderecoRepository.findByPais(pais);
     }
 
-    public List<Endereco> findByEstado(String estado){
-        return  this.enderecoRepository.findByEstadoOuProvincia(estado);
+    public List<Endereco> findByEstado(String estado) {
+        return this.enderecoRepository.findByEstadoOuProvincia(estado);
     }
 
-    public List<String> getPais(){
+    public List<String> getPais() {
         return this.enderecoRepository.getPais();
     }
-
 
 
 }

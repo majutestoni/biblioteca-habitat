@@ -16,6 +16,8 @@ public interface EnderecoRepository extends JpaRepository<Endereco, UUID> {
     List<String> getPais();
     List<Endereco> findByPais(String pais);
 
+    Endereco findByPaisAndEstadoOuProvinciaAndCidade(String pais, String estado, String cidade);
+
     List<Endereco> findByEstadoOuProvincia(String estado);
 
 }

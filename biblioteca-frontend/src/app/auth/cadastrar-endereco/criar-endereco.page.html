@@ -1,0 +1,95 @@
+<p-toast></p-toast>
+<ion-content>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button
+                defaultHref="/auth"
+                text="{{ 'furbot.voltar' | translate }}"
+            ></ion-back-button>
+        </ion-buttons>
+        <!-- <ion-spinner *ngIf="isSaving" color="primary"></ion-spinner> -->
+    </ion-toolbar>
+    <div class="container-fluid">
+        <ion-card id="card-ion" mode="md" class="no-border">
+        <ion-card-header class="p-0 pt-3">
+            <ion-item lines="none">
+                <ion-label>
+                    <ion-card-title style="font-size: 20px"
+                        >{{ 'Cadastrar endereco' | translate }}</ion-card-title
+                    >
+                    <ion-card-subtitle style="font-size: 12px"
+                        >{{ 'Informes os dados para criar um endereco' | translate }}</ion-card-subtitle
+                    >
+                </ion-label>
+            </ion-item>
+        </ion-card-header>
+        <form [formGroup]="formEndereco">
+            <div class="address-form row">
+                <div class="col-md-6 field mt-3">
+                    <span class="p-float-label">
+                        <input
+                            class="w-100"
+                            type="text"
+                            pInputText
+                            formControlName="cep"
+                            autocomplete="off"
+                            #cep
+                        />
+                        <label>{{'formEndereco.cep' | translate}}</label>
+                    </span>
+                </div>
+                <div class="col-md-6 field mt-3">
+                    <ion-button (click)="consultaCep()">pesquisar </ion-button>
+                </div>
+                <div class="col-md-6 field mt-3">
+                    <span class="p-float-label">
+                        <span class="p-float-label">
+                            <input
+                                class="w-100"
+                                type="text"
+                                pInputText
+                                formControlName="pais"
+                                autocomplete="off"
+                            />
+                            <label>{{'formEndereco.pais' | translate}}</label>
+                        </span>
+                    </span>
+                </div>
+                <div class="col-md-6 field mt-3">
+                    <span class="p-float-label">
+                        <input
+                            class="w-100"
+                            type="text"
+                            pInputText
+                            formControlName="estadoOuProvincia"
+                            autocomplete="off"
+                        />
+                        <label>{{'formEndereco.estado' | translate}}</label>
+                    </span>
+                </div>
+                <div class="col-md-6 field mt-3">
+                    <span class="p-float-label">
+                        <input
+                            class="w-100"
+                            type="text"
+                            pInputText
+                            formControlName="cidade"
+                            autocomplete="off"
+                            #cep
+                        />
+                        <label>{{'formEndereco.cidade' | translate}}</label>
+                    </span>
+                </div>
+            </div>
+            <div class="text-left mt-3">
+                <ion-button fill="clear" color="dark" (click)="back()">
+                    {{'furbot.cancelar' | translate}}</ion-button
+                >
+                <ion-button [disabled]="formEndereco.disabled" (click)="salvar()"
+                    >{{(formEndereco.disabled ? 'furbot.aguarde' : 'furbot.salvar') | translate}}
+                </ion-button>
+            </div>
+        </form>
+        </ion-card>
+    </div>
+</ion-content>
