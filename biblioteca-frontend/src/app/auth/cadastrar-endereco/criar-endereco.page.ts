@@ -48,6 +48,8 @@ export class CriarEnderecoPage implements OnInit {
                     this.messageService.add({severity:'error', summary:'Error', detail:err.error.message})
                 }
             );
+        } else {
+            this.formEndereco.markAllAsTouched()
         }
     }
 
@@ -64,25 +66,24 @@ export class CriarEnderecoPage implements OnInit {
         });
     }
 
-    // não está sendo usado
     consultaCep() {
         const valor = this.formEndereco.get('cep').value;
         if (valor !== null) {
             this.enderecoService.buscar(valor).subscribe(
                 (dados) => {
-                    this.populaForm(dados, this.formEndereco);
+                    this.populaForm(dados);
                 },
                 (err) => {}
             );
         }
     }
 
-    // não está sendo usado
-    populaForm(dados, form) {
-        form.setValue({
+
+    populaForm(dados) {
+        this.formEndereco.setValue({
             cep: dados.cep,
             cidade: dados.localidade,
-            estado: dados.uf,
+            estadoOuProvincia: dados.uf,
             pais: 'Brasil'
         });
     }

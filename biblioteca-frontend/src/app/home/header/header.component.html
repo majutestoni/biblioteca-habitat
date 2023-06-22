@@ -4,12 +4,18 @@
             <img src="../../../assets/icon/favicon.png" alt="" height="90vh" />
         </div>
         <menu>
-            <nav>Inicio</nav>
-            <nav>Cadastrar</nav>
-            <nav>Pesquisar</nav>
+            <a href="">Inicio</a>
+            <a href="">Cadastrar</a>
+            <a href="">Pesquisar</a>
 
             <!--If caso esteja logado e caso não-->
-            <img src="https://ecotelhado.com/wp-content/uploads/2022/09/qual-a-importancia-do-dia-da-arvore.jpg" alt="">
+            <div class="user">
+                <button mat-button [matMenuTriggerFor]="menu">▾</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Editar Perfil</button>
+                    <button mat-menu-item>Fazer cadastro</button>
+                </mat-menu>
+            </div>
         </menu>
     </div>
 </ion-header>

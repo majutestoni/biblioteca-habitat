@@ -76,6 +76,7 @@ export class CriarContaPage implements OnInit {
                 this.back();
             } else {
                 this.formGroup.markAllAsTouched();
+                this.formEndereco.markAllAsTouched()
             }
         } catch (err) {
             if (!err.error.errors) {
@@ -91,10 +92,6 @@ export class CriarContaPage implements OnInit {
         this.formGroup.enable();
     }
 
-    public isJogador() {
-        return this.formGroup.get('perfil').value === Perfil.JOGADOR;
-    }
-
     public back() {
         this.navController.back();
     }
@@ -105,7 +102,7 @@ export class CriarContaPage implements OnInit {
             nome: [null, Validators.compose([Validators.required, Validators.maxLength(150)])],
             senha: [null, Validators.compose([Validators.required, Validators.maxLength(18)])],
             email: [null, Validators.compose([Validators.maxLength(250), Validators.required])],
-            intituicao: [null, Validators.compose([Validators.maxLength(250)])],
+            instituicao: [null, Validators.compose([Validators.maxLength(250)])],
             fone: [null, Validators.compose([Validators.maxLength(250)])],
             clube: [null, Validators.compose([Validators.maxLength(250)])],
             endereco: [null, Validators.compose([Validators.maxLength(250)])]

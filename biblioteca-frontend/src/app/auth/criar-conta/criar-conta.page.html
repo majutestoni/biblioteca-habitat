@@ -26,16 +26,10 @@
                 <form [formGroup]="formGroup">
                     <div class="row mt-4">
                         <div class="col-md-6 field">
-                            <span class="p-float-label">
-                                <input
-                                    class="w-100"
-                                    type="text"
-                                    pInputText
-                                    formControlName="nome"
-                                    autocomplete="off"
-                                />
-                                <label class="required">{{'furbot.nome' | translate}}</label>
-                            </span>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{'furbot.nome' | translate}}</mat-label>
+                                <input formControlName="nome" matInput>
+                              </mat-form-field>
                             <app-validador
                                 [control]="formGroup.get('nome')"
                                 [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthNome' | translate)}"
@@ -43,16 +37,10 @@
                             </app-validador>
                         </div>
                         <div class="col-md-6 field">
-                            <span class="p-float-label">
-                                <input
-                                    class="w-100"
-                                    type="text"
-                                    pInputText
-                                    formControlName="usuario"
-                                    autocomplete="off"
-                                />
-                                <label class="required">{{'furbot.usuario' | translate}}</label>
-                            </span>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{'furbot.usuario' | translate}}</mat-label>
+                                <input formControlName="usuario" matInput />
+                            </mat-form-field>
                             <app-validador
                                 [control]="formGroup.get('usuario')"
                                 [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthUsuario' | translate)}"
@@ -60,40 +48,22 @@
                             </app-validador>
                         </div>
                         <div class="col-md-6 field mt-3">
-                            <span class="p-float-label">
-                                <input
-                                    class="w-100"
-                                    type="text"
-                                    pInputText
-                                    formControlName="clube"
-                                    autocomplete="off"
-                                />
-                                <label class="">{{'furbot.clube' | translate}}</label>
-                            </span>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{'furbot.clube' | translate}}</mat-label>
+                                <input formControlName="clube" matInput />
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6 field mt-3">
-                            <span class="p-float-label">
-                                <input
-                                    class="w-100"
-                                    type="text"
-                                    pInputText
-                                    formControlName="intituicao"
-                                    autocomplete="off"
-                                />
-                                <label class="">{{'furbot.instituicao' | translate}}</label>
-                            </span>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{'furbot.instituicao' | translate}}</mat-label>
+                                <input formControlName="instituicao" matInput />
+                            </mat-form-field>
                         </div>
                         <div class="col-md-6 field mt-3">
-                            <span class="p-float-label">
-                                <input
-                                    class="w-100"
-                                    type="text"
-                                    pInputText
-                                    formControlName="email"
-                                    autocomplete="off"
-                                />
-                                <label class="required">{{'furbot.email' | translate}}</label>
-                            </span>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{'furbot.email' | translate}}</mat-label>
+                                <input formControlName="email" matInput />
+                            </mat-form-field>
                             <app-validador
                                 [control]="formGroup.get('email')"
                                 [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthSenha' | translate)}"
@@ -158,6 +128,11 @@
                                 ></p-dropdown>
                                 <label class="required">{{'formEndereco.pais' | translate}}</label>
                             </span>
+                            <app-validador
+                            [control]="formEndereco.get('pais')"
+                            [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthUsuario' | translate)}"
+                        >
+                        </app-validador>
                         </div>
                         <div class="col-md-6 field mt-3">
                             <span class="p-float-label">
@@ -175,6 +150,11 @@
                                     >{{'formEndereco.estado' | translate}}</label
                                 >
                             </span>
+                            <app-validador
+                            [control]="formEndereco.get('estado')"
+                            [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthUsuario' | translate)}"
+                        >
+                        </app-validador>
                         </div>
                         <div class="col-md-6 field mt-3">
                             <span class="p-float-label">
@@ -192,10 +172,16 @@
                                     >{{'formEndereco.cidade' | translate}}</label
                                 >
                             </span>
+                            <app-validador
+                            [control]="formEndereco.get('cidade')"
+                            [errorMessages]="{required: ('furbot.required' | translate), maxlength: ('furbot.maxLengthUsuario' | translate)}"
+                        >
+                        </app-validador>
                         </div>
                         <div class="end col-md-6 field mt-3">
                             <span class="p-float-label">
-                                Não achou seu endereço? cadastre <a class="ml-1" routerLink="/auth/criar-endereco" > aqui</a>
+                                Não achou seu endereço? cadastre
+                                <a class="ml-1" routerLink="/auth/criar-endereco"> aqui</a>
                             </span>
                         </div>
                     </form>
