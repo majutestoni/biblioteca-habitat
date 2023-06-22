@@ -1,59 +1,82 @@
 @import '../../../theme/variables.scss';
 
-.container-header{
-  display: flex;
-  width: 100%;
-  background-color:  $color-primary;
-  justify-content: space-around;
-  align-items: center;
-
-  menu{
+.container-header {
     display: flex;
+    font-family: noticia text, serif;
+    width: 100%;
+    background-color: $color-primary;
+    justify-content: space-around;
     align-items: center;
-    color: $primary-contrast;
 
-    a{
-      margin: 0 1rem 0 1rem;
-      font-size: 15pt;
-    }
+    menu {
+        display: flex;
+        align-items: center;
+        color: $primary-contrast;
 
-    img{
-      border-radius: 50%;
-      height: 40px;
-      width: 50px;
+        a {
+            margin: 0 1rem 0 1rem;
+            font-size: 15pt;
+        }
+        
+
+        img {
+            border-radius: 50%;
+            height: 40px;
+            width: 50px;
+        }
     }
-  }
 }
 
-button{
-  outline: 0;
-  font-size: 12pt;
+button {
+    outline: 0;
+    font-size: 12pt;
 }
 
-.user{
-  display: flex;
-  flex-direction: column;
+.novo-menu {
+  display: none;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+
+
 }
 
 a {
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  color: $primary-contrast;
-
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: $primary-contrast;
 }
 
 a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px; /* Ajuste a altura da sublinha conforme necessário */
-  width: 0;
-  height: 0.1rem; /* Ajuste a espessura da sublinha conforme necessário */
-  background-color:  $primary-contrast; /* Cor da sublinha */
-  transition: width 0.3s ease; /* Duração e transição da animação */
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Ajuste a altura da sublinha conforme necessário */
+    width: 0;
+    height: 0.1rem; /* Ajuste a espessura da sublinha conforme necessário */
+    background-color: $primary-contrast; /* Cor da sublinha */
+    transition: width 0.3s ease; /* Duração e transição da animação */
 }
 
 a:hover::after {
-  width: 100%; /* A sublinha se expandirá da esquerda para a direita ao passar o mouse */
+    width: 100%; /* A sublinha se expandirá da esquerda para a direita ao passar o mouse */
+}
+
+@media screen and (max-width: 720px) {
+    menu {
+        a {
+            display: none;
+        }
+    }
+
+    .novo-menu {
+        display: block;
+    }
+
+    .button-menu{
+      font-size: 24pt;
+    }
 }

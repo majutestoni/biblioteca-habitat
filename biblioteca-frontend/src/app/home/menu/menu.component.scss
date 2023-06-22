@@ -1,0 +1,10 @@
+@import '../../../theme/variables.scss';
+
+body{
+  border-right: 1px solid $color-primary;
+  width: 15%;
+  .buttons{
+    
+    margin-top: 60%;
+  }
+}

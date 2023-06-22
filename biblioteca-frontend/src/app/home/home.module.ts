@@ -6,6 +6,10 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HeaderModule } from './header/header.module';
+import { MenuModule } from './menu/menu.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input'
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   imports: [
@@ -13,7 +17,12 @@ import { HeaderModule } from './header/header.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    HeaderModule
+    HeaderModule,
+    MenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    
   ],
   declarations: [HomePage]
 })

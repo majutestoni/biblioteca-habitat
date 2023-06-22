@@ -6,14 +6,14 @@
         <menu>
             <a href="">Inicio</a>
             <a href="">Cadastrar</a>
-            <a href="">Pesquisar</a>
 
             <!--If caso esteja logado e caso não-->
             <div class="user">
-                <button mat-button [matMenuTriggerFor]="menu">▾</button>
+                <button class="button-menu" mat-button [matMenuTriggerFor]="menu">▾</button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item>Editar Perfil</button>
                     <button mat-menu-item>Fazer cadastro</button>
+                    <button class="novo-menu" mat-menu-item>Inicio</button>
                 </mat-menu>
             </div>
         </menu>
