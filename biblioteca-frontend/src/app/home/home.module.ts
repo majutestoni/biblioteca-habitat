@@ -10,6 +10,8 @@ import { MenuModule } from './menu/menu.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input'
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { FiltroPageModule } from './filtro/filtro.module';
+
 
 @NgModule({
   imports: [
@@ -22,6 +24,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    FiltroPageModule
     
   ],
   declarations: [HomePage]

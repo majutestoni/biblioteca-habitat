@@ -12,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './core/interceptor';
 import { ChartModule } from 'primeng/chart';
+import { HeaderModule } from './home/header/header.module';
 
 export const createTranslateLoader = (http: any) => new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
@@ -19,6 +20,7 @@ export const createTranslateLoader = (http: any) => new TranslateHttpLoader(http
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    HeaderModule,
     BrowserModule,
     ChartModule,
     IonicModule.forRoot(),

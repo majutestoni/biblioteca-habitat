@@ -1,12 +1,7 @@
 <body>
     <div class="buttons">
-        <ion-button class="w-100">Livros</ion-button>
-        <ion-button class="w-100">Artigos</ion-button>
-        <ion-button class="w-100">Videos</ion-button>
-        <ion-button class="w-100">TCC</ion-button>
-        <ion-button class="w-100">Reportagens</ion-button>
-        <ion-button class="w-100">Sites</ion-button>
-        <ion-button class="w-100">Cursos</ion-button>
-        <ion-button class="w-100">Produtos educacionais</ion-button>
+        <div *ngFor="let item of menus">
+            <ion-button  [queryParams]="{ clearHistory: true }"  [routerLink]="[item.router]"   class="w-100">{{ item.label }}</ion-button>
+        </div>
     </div>
 </body>

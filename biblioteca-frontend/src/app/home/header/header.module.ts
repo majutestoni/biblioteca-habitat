@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { FiltroPageModule } from '../filtro/filtro.module';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -14,7 +15,8 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     IonicModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    FiltroPageModule 
   ]
 })
 export class HeaderModule {}

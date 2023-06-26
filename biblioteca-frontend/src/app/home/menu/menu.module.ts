@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [MenuComponent],
@@ -14,7 +15,8 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     IonicModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule // Adicione o RouterModule aos imports
   ]
 })
 export class MenuModule {}

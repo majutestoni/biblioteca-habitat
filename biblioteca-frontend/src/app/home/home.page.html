@@ -1,45 +1,10 @@
 <app-header></app-header>
-<ion-content [fullscreen]="true">
+<ion-content>
     <div class="menu">
         <app-menu></app-menu>
     </div>
     <div class="container">
-        <ion-card class="filtro">
-            <ion-card class="pesquisa">
-                <ion-card-content class="body row">
-                    <div class="col-lg-6 col-md-12 ">
-                        <mat-form-field appearance="outline" class="input">
-                            <mat-label>Titulo do material</mat-label>
-                            <input matInput />
-                        </mat-form-field>
-                    </div>
-                    <div class="col-lg-6 col-md-12 ">
-                        <mat-form-field appearance="outline" class="input">
-                            <mat-label>Autor do material</mat-label>
-                            <input matInput />
-                        </mat-form-field>
-                    </div>
-                    <div class="col-lg-6 col-sm-12">
-                        <mat-form-field appearance="outline" class="input">
-                            <mat-label>Data inicial</mat-label>
-                            <input matInput />
-                        </mat-form-field>
-                    </div>
-                    <div class="col-lg-6 col-sm-12">
-                        <mat-form-field appearance="outline" class="input">
-                            <mat-label>Data final</mat-label>
-                            <input matInput />
-                        </mat-form-field>
-                    </div>
-                </ion-card-content>
-
-                <ion-row class="ion-justify-content-end ion-align-items-end">
-                    <ion-button size="medium" type="submit" class="mt-4"> Filtrar</ion-button>
-                </ion-row>
-            </ion-card>
-        </ion-card>
-        <div class="conteudo mt-5">
-            <span>Aqui vai conteudos adicionados recentemente ou com mais likes</span>
-        </div>
+        tetstetet
+        <router-outlet></router-outlet>
     </div>
 </ion-content>
