@@ -4,7 +4,7 @@ import { FiltroPage } from './filtro.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'filtro',
     component: FiltroPage,
   }
 ];

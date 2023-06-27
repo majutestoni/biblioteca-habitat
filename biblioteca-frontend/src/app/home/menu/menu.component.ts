@@ -16,18 +16,19 @@ export class MenuComponent implements OnInit {
     }
 
     constructor(private router: Router) {}
+
     ngOnInit(): void {
         const teste = this.router.url.split('/');
-        console.log(teste);
 
-        if (teste[2] == 'admin') {
+        if (teste[2] === 'admin') {
             this.menus = this.menuAdmin;
         } else {
-            this.menus = this.produtrosDidaticos;
+            this.menus = this.produtosDidaticos;
         }
     }
 
-    private produtrosDidaticos = [
+
+    private produtosDidaticos = [
         { label: 'Livros', router: '' },
         { label: 'Artigos', router: '' },
         { label: 'Videos', router: '' },
@@ -39,8 +40,16 @@ export class MenuComponent implements OnInit {
     ];
 
     private menuAdmin = [
-        { label: 'Materias em triagem', router: 'home/admin' },
-        { label: 'Adicionar admin', router: 'novo' },
-        { label: 'Administradores', router: '/novo' }
+        { label: 'Materias em triagem', action: this.gotToAdmin.bind(this) },
+        { label: 'Adicionar admin', action: this.gotToNovo.bind(this) },
+        { label: 'Administradores', action: this.gotToNovo.bind(this) }
     ];
+
+
+    gotToAdmin() {
+        this.router.navigateByUrl('/home/admin');
+    }
+    gotToNovo() {
+        this.router.navigateByUrl('/home/admin/novo');
+    }
 }

@@ -16,7 +16,8 @@ import { RouterModule } from '@angular/router';
     IonicModule,
     MatMenuModule,
     MatButtonModule,
-    RouterModule // Adicione o RouterModule aos imports
+    RouterModule
+
   ]
 })
 export class MenuModule {}

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
+import { CanActivateAdmin } from './canActiveAdmin';
 
 const routes: Routes = [
     {
@@ -9,8 +10,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'filtro',
-                pathMatch: 'full'
+                loadChildren: () => import('./filtro/filtro.module').then((m) => m.FiltroPageModule)
             },
             {
                 path: 'filtro',
@@ -21,12 +21,14 @@ const routes: Routes = [
 
     {
         path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminPageModule)
+        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminPageModule),
+        canActivate: [CanActivateAdmin]
     }
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [CanActivateAdmin]
 })
 export class HomePageRoutingModule {}

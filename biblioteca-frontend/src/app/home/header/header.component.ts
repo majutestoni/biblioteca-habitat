@@ -21,14 +21,9 @@ export class HeaderComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private router: Router
     ) {}
-    ngOnInit(): void {
-        const teste = this.appStorageService.get('admin');
-        console.log(teste);
-
-        console.log(this.activatedRoute.snapshot.data);
-    }
+    ngOnInit(): void {}
 
     paraAdministrador() {
-      this.router.navigateByUrl('/home/admin')
+        this.router.navigateByUrl('/home/admin');
     }
 }
