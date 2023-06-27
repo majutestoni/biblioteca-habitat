@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FiltroPageModule } from './filtro/filtro.module';
+import { AdminPageModule } from './admin/admin.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FiltroPageModule } from './filtro/filtro.module';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    FiltroPageModule
+    FiltroPageModule,
+    AdminPageModule
     
   ],
   declarations: [HomePage]

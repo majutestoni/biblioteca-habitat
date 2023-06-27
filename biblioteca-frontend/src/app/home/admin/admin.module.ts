@@ -10,6 +10,7 @@ import { AdminPage } from './admin.page';
 import { MatTableModule } from '@angular/material/table';
 import { MenuModule } from '../menu/menu.module';
 import { NovoAdminPage } from './novo/novo.page';
+import { HeaderModule } from '../header/header.module';
 
 @NgModule({
     imports: [
@@ -21,8 +22,10 @@ import { NovoAdminPage } from './novo/novo.page';
         MatDatepickerModule,
         AdminPageRoutingModule,
         MatTableModule,
-        MenuModule
+        MenuModule,
+        HeaderModule
     ],
-    declarations: [AdminPage, NovoAdminPage]
+    declarations: [AdminPage, NovoAdminPage],
+    exports: [AdminPage, NovoAdminPage]
 })
 export class AdminPageModule {}

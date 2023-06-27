@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FiltroPageRoutingModule } from './filtro-routing.module';
+import { MenuModule } from '../menu/menu.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
@@ -16,8 +18,11 @@ import { FiltroPageRoutingModule } from './filtro-routing.module';
         MatFormFieldModule,
         MatInputModule,
         MatDatepickerModule,
-        FiltroPageRoutingModule
+        FiltroPageRoutingModule,
+        MenuModule,
+        RouterModule
     ],
-    declarations: [FiltroPage]
+    declarations: [FiltroPage],
+    exports: [FiltroPage]
 })
 export class FiltroPageModule {}

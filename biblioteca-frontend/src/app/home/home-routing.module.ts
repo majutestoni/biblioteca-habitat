@@ -8,19 +8,20 @@ const routes: Routes = [
         component: HomePage,
         children: [
             {
+                path: '',
+                redirectTo: 'filtro',
+                pathMatch: 'full'
+            },
+            {
                 path: 'filtro',
                 loadChildren: () => import('./filtro/filtro.module').then((m) => m.FiltroPageModule)
             }
         ]
     },
+
     {
         path: 'admin',
-        children: [
-            {
-                path: '',
-                loadChildren: () => import('./admin/admin.module').then((m) => m.AdminPageModule)
-            }
-        ]
+        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminPageModule)
     }
 ];
 

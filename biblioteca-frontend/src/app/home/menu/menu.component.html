@@ -1,7 +1,7 @@
 <body>
     <div class="buttons">
         <div *ngFor="let item of menus">
-            <ion-button  [queryParams]="{ clearHistory: true }"  [routerLink]="[item.router]"   class="w-100">{{ item.label }}</ion-button>
+            <ion-button  [routerLink]="[item.router]"  class="w-100">{{ item.label }}</ion-button>
         </div>
     </div>
 </body>
