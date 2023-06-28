@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 
@@ -8,48 +8,21 @@ import { Router } from '@angular/router';
     styleUrls: ['menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-    public menus = [];
-    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+    @Input() public menus = [];
+    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;  
+    @ViewChild('sidenav') sidenav;
 
-    someMethod() {
-        this.trigger.openMenu();
+    reason = '';
+  
+    close(reason: string) {
+      this.reason = reason;
+      this.sidenav.close();
     }
+      someMethod() {}
 
     constructor(private router: Router) {}
 
     ngOnInit(): void {
-        const teste = this.router.url.split('/');
-
-        if (teste[2] === 'admin') {
-            this.menus = this.menuAdmin;
-        } else {
-            this.menus = this.produtosDidaticos;
-        }
     }
-
-
-    private produtosDidaticos = [
-        { label: 'Livros', router: '' },
-        { label: 'Artigos', router: '' },
-        { label: 'Videos', router: '' },
-        { label: 'TCC', router: '' },
-        { label: 'Reportagens', router: '' },
-        { label: 'Sites', router: '' },
-        { label: 'Cursos', router: '' },
-        { label: 'Produtos educacionais', router: '' }
-    ];
-
-    private menuAdmin = [
-        { label: 'Materias em triagem', action: this.gotToAdmin.bind(this) },
-        { label: 'Adicionar admin', action: this.gotToNovo.bind(this) },
-        { label: 'Administradores', action: this.gotToNovo.bind(this) }
-    ];
-
-
-    gotToAdmin() {
-        this.router.navigateByUrl('/home/admin');
-    }
-    gotToNovo() {
-        this.router.navigateByUrl('/home/admin/novo');
-    }
+    
 }

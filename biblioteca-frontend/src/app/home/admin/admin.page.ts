@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 const ELEMENT_DATA = [
     {id: 1, titulo: 'Hydrogen', publicador: 1.0079, acao: 'H'},
     {id: 2, titulo: 'Helium', publicador: 4.0026, acao: 'He'},
@@ -17,9 +18,25 @@ const ELEMENT_DATA = [
     styleUrls: ['admin.page.scss']
 })
 export class AdminPage implements OnInit {
-    constructor() {}
+    constructor(private router:Router) {}
+
+    
     dataSource = ELEMENT_DATA;
     displayedColumns: string[] = ['id', 'titulo', 'publicador', 'acao'];
     ngOnInit(): void {
     }
+
+    public menuAdmin = [
+        { label: 'Materias em triagem', action: this.gotToAdmin.bind(this) },
+        { label: 'Adicionar admin', action: this.gotToNovo.bind(this) },
+        { label: 'Administradores', action: this.gotToNovo.bind(this) }
+    ];
+
+    gotToAdmin() {
+        this.router.navigateByUrl('/home/admin');
+    }
+    gotToNovo() {
+        this.router.navigateByUrl('/home/admin/novo');
+    }
+
 }

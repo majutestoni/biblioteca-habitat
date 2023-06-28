@@ -11,7 +11,7 @@ export class AppStorageService {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   public static KEY_STORAGE = {
     token: `${AppStorageService.KEY}.token`,
-    logado: `${AppStorageService.KEY}.logado`
+    logado: `${AppStorageService.KEY}.logado`,
   };
 
   constructor() {}

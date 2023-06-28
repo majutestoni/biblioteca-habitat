@@ -3,6 +3,7 @@ package br.furb.inf.furbot.controllers.usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +35,15 @@ public class UsuarioController extends ControllerImpl<Usuario> {
 	@GetMapping("/logado")
 	public ResponseEntity<Usuario> buscar() {
 		return ResponseEntity.ok().body(this.service.buscarUsuarioLogado());
+	}
+
+
+	@GetMapping("/usuario/{usuario}")
+	public ResponseEntity<Usuario> buscarUsuario(@PathVariable String usuario){
+		System.out.println("USUARIO: " + usuario);
+		Usuario user = service.obterPeloUsuario(usuario);
+
+		return ResponseEntity.ok().body(user);
 	}
 
 }

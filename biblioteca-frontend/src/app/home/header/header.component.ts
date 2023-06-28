@@ -10,18 +10,18 @@ import { AdminPage } from '../admin/admin.page';
     styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    public isAdmin = false;
     @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
     someMethod() {
         this.trigger.openMenu();
     }
 
-    constructor(
-        private appStorageService: AppStorageService,
-        private activatedRoute: ActivatedRoute,
-        private router: Router
-    ) {}
-    ngOnInit(): void {}
+    constructor(private appStorageService: AppStorageService, private router: Router) {}
+    ngOnInit(): void {
+        const user = this.appStorageService.get(AppStorageService.KEY_STORAGE.logado);
+        this.isAdmin = user.admin;
+    }
 
     paraAdministrador() {
         this.router.navigateByUrl('/home/admin');

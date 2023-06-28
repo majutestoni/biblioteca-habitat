@@ -13,9 +13,8 @@ export class CanActivateAdmin implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
 
-    const teste = this.appStorage.get('admin')
-    console.log(teste)
-    return this.appStorage.get('admin')
+    const user = this.appStorage.get(AppStorageService.KEY_STORAGE.logado)
+    return user.admin
   }
 }
 
