@@ -1,0 +1,79 @@
+<ion-content>
+    <app-header></app-header>
+    <ion-toolbar id="button-toolbar" *ngIf="isMobile">
+        <ion-menu-button class="ml-2" slot="start"></ion-menu-button>
+    </ion-toolbar>
+    <div class="container-fluid">
+        <ion-card mode="md" class="no-border">
+            <ion-card-header class="p-0 pt-3">
+                <ion-item lines="none">
+                    <ion-label>
+                        <ion-card-title style="font-size: 20px">{{
+                            'furbot.alteracao.de.dados' | translate
+                        }}</ion-card-title>
+                        <ion-card-subtitle style="font-size: 12px"
+                            >{{ 'furbot.informe.os.dados' | translate }}
+                        </ion-card-subtitle>
+                    </ion-label>
+                </ion-item>
+            </ion-card-header>
+            <ion-card-content>
+                <form [formGroup]="formGroup">
+                    <div class="row mt-4">
+                        <div class="col-md-6 field">
+                            <mat-form-field appearance="outline" class="input">
+                                <mat-label>{{ 'furbot.nome' | translate }}</mat-label>
+                                <input class="w-100" formControlName="nome" matInput />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 field">
+                            <mat-form-field appearance="outline" class="input">
+                                <mat-label>{{ 'furbot.usuarioPerfil' | translate }}</mat-label>
+                                <input class="w-100" formControlName="usuario" matInput />
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6 field mt-3">
+                            <mat-form-field appearance="outline" class="input">
+                                <mat-label>{{ 'furbot.email' | translate }}</mat-label>
+                                <input class="w-100" formControlName="email" matInput />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 mt-3 field">
+                            <mat-form-field appearance="outline" class="input">
+                                <mat-label>{{ 'furbot.login.senha' | translate }}</mat-label>
+                                <input class="w-100" formControlName="senha" matInput />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 mt-3 field">
+                          <mat-form-field appearance="outline" class="input">
+                              <mat-label>instituicao</mat-label>
+                              <input class="w-100" formControlName="instituicao" matInput />
+                          </mat-form-field>
+                      </div>
+                      <div class="col-md-6 mt-3 field">
+                        <mat-form-field appearance="outline" class="input">
+                            <mat-label>clube</mat-label>
+                            <input class="w-100" formControlName="clube" matInput />
+                        </mat-form-field>
+                    </div>
+                      <div class="col-md-6 mt-3 field">
+                        <mat-form-field appearance="outline" class="input">
+                            <mat-label>Telefone</mat-label>
+                            <input class="w-100" formControlName="fone" matInput />
+                        </mat-form-field>
+                    </div>
+                    </div>
+                    <div class="text-left mt-3">
+                        <ion-button [disabled]="formGroup.disabled" (click)="update()"
+                            >{{
+                                (formGroup.disabled ? 'furbot.aguarde' : 'furbot.salvar')
+                                    | translate
+                            }}
+                        </ion-button>
+                    </div>
+                </form>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>

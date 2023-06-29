@@ -42,7 +42,7 @@ public class Usuario extends ModelImpl {
 
 	private String fone;
 
-	private String instituição;
+	private String instituicao;
 
 	private String clube;
 

@@ -7,22 +7,26 @@ const routes: Routes = [
     {
         path: '',
         component: HomePage,
-        children: [
-            {
-                path: '',
-                loadChildren: () => import('./filtro/filtro.module').then((m) => m.FiltroPageModule)
-            },
-            {
-                path: 'filtro',
-                loadChildren: () => import('./filtro/filtro.module').then((m) => m.FiltroPageModule)
-            }
-        ]
+       // children: [
+       //     {
+       //         path: '',
+       //         loadChildren: () => import('./filtro/filtro.module').then((m) => m.FiltroPageModule)
+       //     },
+       //     {
+       //         path: 'filtro',
+       //         loadChildren: () => import('./filtro/filtro.module').then((m) => m.FiltroPageModule)
+       //     }
+       // ]
     },
 
     {
         path: 'admin',
         loadChildren: () => import('./admin/admin.module').then((m) => m.AdminPageModule),
         canActivate: [CanActivateAdmin]
+    },
+    {
+        path: 'usuario',
+        loadChildren: () => import('./usuario/usuario.module').then((m) => m.UsuarioModule),
     }
 ];
 

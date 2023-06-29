@@ -18,7 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatMenuModule,
         MatButtonModule,
         RouterModule,
-        MatSidenavModule
+        MatSidenavModule,
     ]
 })
 export class MenuModule {}

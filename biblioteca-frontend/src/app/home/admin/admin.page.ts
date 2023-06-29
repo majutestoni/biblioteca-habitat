@@ -28,7 +28,6 @@ export class AdminPage implements OnInit {
 
     public menuAdmin = [
         { label: 'Materias em triagem', action: this.gotToAdmin.bind(this) },
-        { label: 'Adicionar admin', action: this.gotToNovo.bind(this) },
         { label: 'Administradores', action: this.gotToNovo.bind(this) }
     ];
 

@@ -24,7 +24,9 @@ import { HeaderModule } from '../header/header.module';
         MatTableModule,
         MenuModule,
         HeaderModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        
+      
     ],
     declarations: [AdminPage, NovoAdminPage],
     exports: [AdminPage, NovoAdminPage]

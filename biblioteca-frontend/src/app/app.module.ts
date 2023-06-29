@@ -13,6 +13,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { HttpConfigInterceptor } from './core/interceptor';
 import { ChartModule } from 'primeng/chart';
 import { HeaderModule } from './home/header/header.module';
+import { ToastrModule } from 'ngx-toastr';
 
 export const createTranslateLoader = (http: any) => new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
@@ -27,6 +28,11 @@ export const createTranslateLoader = (http: any) => new TranslateHttpLoader(http
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 15000, // 15 seconds
+      closeButton: true,
+      progressBar: true,
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -34,6 +40,7 @@ export const createTranslateLoader = (http: any) => new TranslateHttpLoader(http
         deps: [HttpClient]
       }
     })],
+
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },

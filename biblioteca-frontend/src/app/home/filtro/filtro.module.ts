@@ -9,6 +9,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FiltroPageRoutingModule } from './filtro-routing.module';
 import { MenuModule } from '../menu/menu.module';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
     imports: [
@@ -20,7 +22,8 @@ import { RouterModule } from '@angular/router';
         MatDatepickerModule,
         FiltroPageRoutingModule,
         MenuModule,
-        RouterModule
+        RouterModule,
+        MatCardModule
     ],
     declarations: [FiltroPage],
     exports: [FiltroPage]

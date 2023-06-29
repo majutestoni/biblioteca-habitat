@@ -70,9 +70,6 @@ public class UsuarioService extends ServiceImpl<Usuario> {
     @Transactional
     public Usuario update(UUID id, Usuario usuario) {
 
-        if (!buscarUsuarioLogado().getId().equals(id)) {
-            throw new NotAuthorizationException("Seu usuário nao pode fazer isso");
-        }
         if (usuario.getSenha() != null) {
             usuario.setSenha(bCript.encode(usuario.getSenha()));
         } else {

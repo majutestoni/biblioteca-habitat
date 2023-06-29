@@ -70,6 +70,12 @@
                             >
                             </app-validador>
                         </div>
+                        <div class="col-md-6 field mt-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Telefone</mat-label>
+                                <input formControlName="fone" matInput />
+                            </mat-form-field>
+                        </div>
                         <div class="col-md-6 mt-3 field">
                             <mat-form-field appearance="outline" class="form">
                                 <mat-label>{{'furbot.login.senha' | translate}}</mat-label>
@@ -144,7 +150,6 @@
                                     formControlName="estado"
                                     optionLabel="label"
                                     optionValue="value"
-                                    [disabled]="optionsEstados.length == 0"
                                 ></p-dropdown>
                                 <label class="required"
                                     >{{'formEndereco.estado' | translate}}</label
@@ -160,7 +165,6 @@
                             <span class="p-float-label">
                                 <p-dropdown
                                     [options]="optionsCidade"
-                                    [disabled]="optionsCidade.length == 0"
                                     (onChange)="defineEndereco()"
                                     [style]="{'minWidth':'100%'}"
                                     class="w-100"

@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { FiltroPage } from './filtro.page';
 
 const routes: Routes = [
-  {
-    path: 'filtro',
-    component: FiltroPage,
-  }
+//  {
+//    path: 'filtro',
+//    component: FiltroPage,
+//  }
 ];
 
 @NgModule({

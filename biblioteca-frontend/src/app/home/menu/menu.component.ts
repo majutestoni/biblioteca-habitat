@@ -9,20 +9,18 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
     @Input() public menus = [];
-    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;  
+    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
     @ViewChild('sidenav') sidenav;
 
     reason = '';
-  
+
     close(reason: string) {
-      this.reason = reason;
-      this.sidenav.close();
+        this.reason = reason;
+        this.sidenav.close();
     }
-      someMethod() {}
+    someMethod() {}
 
     constructor(private router: Router) {}
 
-    ngOnInit(): void {
-    }
-    
+    ngOnInit(): void {}
 }

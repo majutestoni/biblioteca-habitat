@@ -4,15 +4,15 @@
             <img src="../../../assets/icon/favicon.png" alt="" height="90vh" />
         </div>
         <menu>
-            <a [routerLink]="['/home/filtro']">Inicio</a>
-            <a [routerLink]="['/auth']">Cadastrar</a>
-
+            <a [routerLink]="['/home']">Inicio</a>
+            <a *ngIf="!loggedUser" [routerLink]="['/auth']">Fazer cadastro</a>
+            <a *ngIf="loggedUser" [routerLink]="['/auth']">Cadastrar Material</a>
             <!--If caso esteja logado e caso não-->
-            <div class="user">
+            <div class="user" *ngIf="loggedUser">
                 <button class="button-menu" mat-button [matMenuTriggerFor]="menu">▾</button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item>Editar Perfil</button>
-                    <button mat-menu-item>Fazer cadastro</button>
+                    <button mat-menu-item (click)="paraUsuario()">Editar Perfil</button>
+                    <button mat-menu-item (click)="logout()">Sair</button>
                     <button *ngIf="isAdmin" (click)="paraAdministrador()" mat-menu-item>Pagina do admin</button>
                     <button class="novo-menu" mat-menu-item>Inicio</button>
                 </mat-menu>

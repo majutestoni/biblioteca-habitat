@@ -28,7 +28,7 @@ export class CriarContaPage implements OnInit {
         private navController: NavController,
         private usuarioService: UsuarioService,
         private appErroService: AppErroService,
-        private enderecoService: EnderecoService,
+        private enderecoService: EnderecoService
     ) {}
 
     ngOnInit() {
@@ -76,7 +76,7 @@ export class CriarContaPage implements OnInit {
                 this.back();
             } else {
                 this.formGroup.markAllAsTouched();
-                this.formEndereco.markAllAsTouched()
+                this.formEndereco.markAllAsTouched();
             }
         } catch (err) {
             if (!err.error.errors) {
@@ -114,6 +114,9 @@ export class CriarContaPage implements OnInit {
             estado: [null, Validators.compose([Validators.maxLength(250), Validators.required])],
             pais: [null, Validators.compose([Validators.maxLength(250), Validators.required])]
         });
+
+        this.formEndereco.get('estado').disable();
+        this.formEndereco.get('cidade').disable();
     }
 
     // não está sendo usado
@@ -144,6 +147,7 @@ export class CriarContaPage implements OnInit {
 
         this.enderecoService.findByPais(pais).subscribe((e) => {
             this.enderecoOptions = e;
+
             this.optionsEstados = this.enderecoOptions.map((c) => {
                 return {
                     value: c.estadoOuProvincia,
@@ -151,6 +155,7 @@ export class CriarContaPage implements OnInit {
                     id: c.id
                 };
             });
+            this.formEndereco.get('estado').enable();
 
             this.optionsEstados = this.optionsEstados.filter(
                 (objeto, index, array) => array.findIndex((o) => o.value === objeto.value) === index
@@ -174,6 +179,7 @@ export class CriarContaPage implements OnInit {
                     id: c.id
                 };
             });
+            this.formEndereco.get('cidade').enable();
 
             this.optionsCidade = this.optionsCidade.filter(
                 (objeto, index, array) => array.findIndex((o) => o.value === objeto.value) === index
@@ -195,5 +201,4 @@ export class CriarContaPage implements OnInit {
 
         this.formGroup.get('endereco').setValue(cidade);
     }
-
 }
