@@ -37,7 +37,6 @@ export class UsuarioComponent implements OnInit {
       const entity = this.activatedRoute.snapshot.data.entity;
       
       entity.senha = null;
-      console.log(entity)
       this.formGroup.patchValue(this.activatedRoute.snapshot.data.entity);
       this.formGroup.get('usuario').disable();
       this.formGroup.get('nome').disable();

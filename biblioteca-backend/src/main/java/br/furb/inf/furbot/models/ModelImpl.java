@@ -35,15 +35,25 @@ public abstract class ModelImpl implements Serializable {
 	private Date atualizadoEm;
 
 
+	@Column(nullable = true, name = "criado_por")
+	private String criadoPor;
+
+	@Column(nullable = true, name = "atualizado_por")
+	private String atualizadoPor;
+
+
 	@PrePersist
 	private void onCreate() {
 		criadoEm = new Date();
 		atualizadoEm = new Date();
+		criadoPor = UsuarioService.usuarioLogado();
+		atualizadoPor = UsuarioService.usuarioLogado();
 	}
 
 	@PreUpdate
 	private void onUpdate() {
 		atualizadoEm = new Date();
+		atualizadoPor = UsuarioService.usuarioLogado();
 	}
 
 	public Date getCriadoEm() {
