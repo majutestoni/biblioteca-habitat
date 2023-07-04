@@ -36,11 +36,11 @@
 | `id` | `UUID` | **Obrigatório**. id do material |
 | `titulo` | `varchar` | **Obrigatório**. |
 | `ano` | `date` | **Obrigatório**. |
-| `autores` | `varchar` | **Obrigatório**., array de autores|
+| `autores` | `varchar` | **Obrigatório**. |
 | `descricao` | `varchar` |   |
-| `palavras` | `varchar` | **Obrigatório**. palavras pré definidas|
+| `palavras` | `varchar` | **Obrigatório**.|
 | `tipo` | `varchar` | **Obrigatório**. tipo do arquivo |
-| `tema` | `varchar` | tema do material |
+| `tema` | `varchar` | **Obrigatório** |
 | `link` | `varchar` |  **Obrigatório**. link do material caso seja online |
 | `idioma` | `varchar` |**Obrigatório**. |
 | `avalicao` | `int` | likes recebidos |
@@ -61,6 +61,12 @@
 | `criado_por` | `varchar` | **Obrigatório**. |
 | `nome` | `varchar` | **Obrigatório**. |
 
+### Tabela de Autores e Materiais
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `UUID` | **Obrigatório**. id do material |
+| `id` | `UUID` | **Obrigatório**. id do autor |
+
 ### Tabela de Palavras chaves
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
@@ -71,6 +77,12 @@
 | `criado_por` | `varchar` | **Obrigatório**. |
 | `palavra` | `varchar` | **Obrigatório**. |
 
+### Tabela de Palavras e Materiais
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `UUID` | **Obrigatório**. id do material |
+| `id` | `UUID` | **Obrigatório**. id da palavra |
+
 ### Tabela de Temas
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
@@ -80,5 +92,11 @@
 | `atualizado_por` | `varchar` | **Obrigatório**.  |
 | `criado_por` | `varchar` | **Obrigatório**. |
 | `tema` | `varchar` | **Obrigatório**. |
+
+### Tabela de Temas e Materiais
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `UUID` | **Obrigatório**. id do material |
+| `id` | `UUID` | **Obrigatório**. id do tema |
 
 
