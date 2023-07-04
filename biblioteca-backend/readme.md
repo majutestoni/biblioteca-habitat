@@ -29,3 +29,56 @@
 | `cidade` | `varchar` | **Obrigatório**. tamanho 150|
 | `estado_ou_provincia` | `varchar` | **Obrigatório**. tamanho 255|
 | `pais` | `varchar` | **Obrigatório**. tamanho 255|
+
+### Tabela Materias
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `UUID` | **Obrigatório**. id do material |
+| `titulo` | `varchar` | **Obrigatório**. |
+| `ano` | `date` | **Obrigatório**. |
+| `autores` | `varchar` | **Obrigatório**., array de autores|
+| `descricao` | `varchar` |   |
+| `palavras` | `varchar` | **Obrigatório**. palavras pré definidas|
+| `tipo` | `varchar` | **Obrigatório**. tipo do arquivo |
+| `tema` | `varchar` | tema do material |
+| `link` | `varchar` |  **Obrigatório**. link do material caso seja online |
+| `idioma` | `varchar` |**Obrigatório**. |
+| `avalicao` | `int` | likes recebidos |
+| `publicado` | `bool` | default false |
+| `tipo_material` | `varchar` | **Obrigatório**. default outros |
+| `criado_em` | `date` | **Obrigatório**. |
+| `atualizado_em` | `date` | **Obrigatório**. |
+| `atualizado_por` | `UUID` | **Obrigatório**. |
+| `criado_por` | `UUID` | **Obrigatório**. |
+
+### Tabela Autores
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `UUID` | **Obrigatório**. id do usuario |
+| `atualizado_em` | `datetime` | **Obrigatório**.  |
+| `criado_em` | `datetime` | **Obrigatório**. |
+| `atualizado_por` | `varchar` | **Obrigatório**.  |
+| `criado_por` | `varchar` | **Obrigatório**. |
+| `nome` | `varchar` | **Obrigatório**. |
+
+### Tabela de Palavras chaves
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `UUID` | **Obrigatório**. id do usuario |
+| `atualizado_em` | `datetime` | **Obrigatório**.  |
+| `criado_em` | `datetime` | **Obrigatório**. |
+| `atualizado_por` | `varchar` | **Obrigatório**.  |
+| `criado_por` | `varchar` | **Obrigatório**. |
+| `palavra` | `varchar` | **Obrigatório**. |
+
+### Tabela de Temas
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `UUID` | **Obrigatório**. id do usuario |
+| `atualizado_em` | `datetime` | **Obrigatório**.  |
+| `criado_em` | `datetime` | **Obrigatório**. |
+| `atualizado_por` | `varchar` | **Obrigatório**.  |
+| `criado_por` | `varchar` | **Obrigatório**. |
+| `tema` | `varchar` | **Obrigatório**. |
+
+
