@@ -1,0 +1,6 @@
+package br.furb.inf.furbot.enuns;
+
+public enum Tipo {
+
+    ARTIGO, LIVRO, TCC, SITE, CURSO, REPORTAGEM, CAPITULO_DE_LIVRO, DISSETARCAO_OU_TESE, PRODUTO_EDUCACIONAL, OUTROS;
+}

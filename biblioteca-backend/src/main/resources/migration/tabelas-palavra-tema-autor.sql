@@ -36,3 +36,23 @@ CREATE TABLE IF NOT EXISTS `palavra_chave` (
     PRIMARY KEY (`uuid`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `material`;
+
+CREATE TABLE IF NOT EXISTS material (
+    uuid char(36) NOT NULL,
+    atualizado_em datetime(6) DEFAULT NULL,
+    criado_em datetime(6) DEFAULT NULL,
+    atualizado_por char(36) DEFAULT NULL,
+    criado_por char(36) DEFAULT NULL,
+    titulo varchar(150) NOT NULL,
+    ano datetime(6) DEFAULT NULL,
+    descricao varchar(255) NOT NULL,
+    tipo varchar(60) NOT NULL,
+    link varchar(255) NOT NULL,
+    idioma varchar(150) NOT NULL,
+    avaliacao INT(11) NOT NULL,
+    publicado bit(1) DEFAULT FALSE,
+    PRIMARY KEY (`uuid`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
