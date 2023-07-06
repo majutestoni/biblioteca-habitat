@@ -2,6 +2,7 @@ package br.furb.inf.furbot.models.material;
 
 import br.furb.inf.furbot.enuns.Tipo;
 import br.furb.inf.furbot.models.ModelImpl;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -51,6 +54,13 @@ public class Material extends ModelImpl {
 
     @Column(nullable = true)
     private boolean publicado;
+
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "autores_material",
+            joinColumns = @JoinColumn(name = "material_id"),
+            inverseJoinColumns = @JoinColumn(name = "autor_id"))
+    private Set<Autor> autores = new HashSet<>();
 
     @PrePersist
     private void aoCriar() {

@@ -24,4 +24,9 @@ public class AutorService extends ServiceImpl<Autor> {
     public void validator(Autor entity) {
 
     }
+
+    public Autor findById(UUID id){
+        return autorRepository.getOne(id);
+    }
+
 }
