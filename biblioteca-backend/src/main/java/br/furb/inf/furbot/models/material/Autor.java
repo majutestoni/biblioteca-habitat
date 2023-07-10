@@ -30,7 +30,6 @@ public class Autor extends ModelImpl {
     @Size(min = 2, max = 150, message = "autor deve ser entre 4 e 150 dígitos")
     private String nome;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "autores")
     private Set<Material> material;
 

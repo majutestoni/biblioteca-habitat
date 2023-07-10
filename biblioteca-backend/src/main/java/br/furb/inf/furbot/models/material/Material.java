@@ -57,7 +57,7 @@ public class Material extends ModelImpl {
 
 
     @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "autores_material",
+    @JoinTable(name = "autor_material",
             joinColumns = @JoinColumn(name = "material_id"),
             inverseJoinColumns = @JoinColumn(name = "autor_id"))
     private Set<Autor> autores = new HashSet<>();

@@ -1,8 +1,8 @@
 package br.furb.inf.furbot.services.material;
 
+import br.furb.inf.furbot.dtos.MaterialRetornoDto;
 import br.furb.inf.furbot.models.material.Autor;
 import br.furb.inf.furbot.models.material.Material;
-import br.furb.inf.furbot.models.usuario.Usuario;
 import br.furb.inf.furbot.repositories.material.MaterialRepository;
 import br.furb.inf.furbot.services.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +32,8 @@ public class MaterialService extends ServiceImpl<Material> {
 
     }
 
-
-    @Override
     @Transactional
-    public Material create(Material entity) {
+    public MaterialRetornoDto novo(Material entity) {
 
         ArrayList<Autor> autores = new ArrayList<>();
 
@@ -49,9 +47,10 @@ public class MaterialService extends ServiceImpl<Material> {
             entity.getAutores().add(c);
         });
 
-        System.out.println("CHEGOU AQUI");
+        Material material = super.create(entity);
 
-        return super.create(entity);
+        MaterialRetornoDto dto = new MaterialRetornoDto(material);
+        return dto;
 
     }
 
