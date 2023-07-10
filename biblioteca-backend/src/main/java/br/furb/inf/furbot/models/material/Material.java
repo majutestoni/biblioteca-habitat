@@ -55,12 +55,27 @@ public class Material extends ModelImpl {
     @Column(nullable = true)
     private boolean publicado;
 
+    @Column(nullable = true)
+    private boolean aprovado;
+
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "autor_material",
             joinColumns = @JoinColumn(name = "material_id"),
             inverseJoinColumns = @JoinColumn(name = "autor_id"))
     private Set<Autor> autores = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "palavra_material",
+            joinColumns = @JoinColumn(name = "material_id"),
+            inverseJoinColumns = @JoinColumn(name = "palavra_id"))
+    private Set<PalavraChave> palavras = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "tema_material",
+            joinColumns = @JoinColumn(name = "material_id"),
+            inverseJoinColumns = @JoinColumn(name = "tema_id"))
+    private Set<Tema> temas = new HashSet<>();
 
     @PrePersist
     private void aoCriar() {

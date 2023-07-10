@@ -1,16 +1,23 @@
 package br.furb.inf.furbot.services.material;
 
 import br.furb.inf.furbot.dtos.MaterialRetornoDto;
+import br.furb.inf.furbot.exceptions.BadRequestException;
 import br.furb.inf.furbot.models.material.Autor;
 import br.furb.inf.furbot.models.material.Material;
+import br.furb.inf.furbot.models.material.PalavraChave;
+import br.furb.inf.furbot.models.material.Tema;
+import br.furb.inf.furbot.models.usuario.Usuario;
 import br.furb.inf.furbot.repositories.material.MaterialRepository;
 import br.furb.inf.furbot.services.ServiceImpl;
+import br.furb.inf.furbot.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -21,6 +28,15 @@ public class MaterialService extends ServiceImpl<Material> {
 
     @Autowired
     private AutorService autorService;
+
+    @Autowired
+    private TemaService temaService;
+
+    @Autowired
+    private PalavraChaveService palavraChaveService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Override
     public JpaRepository<Material, UUID> getRepository() {
@@ -35,17 +51,18 @@ public class MaterialService extends ServiceImpl<Material> {
     @Transactional
     public MaterialRetornoDto novo(Material entity) {
 
-        ArrayList<Autor> autores = new ArrayList<>();
 
-        entity.getAutores().forEach(e -> {
-            Autor temp = autorService.findById(e.getId());
-            autores.add(temp);
-        });
+        // O motivo pelo qual isto é feito é para poder retornar o nome, palavra e tema
+        entity.setAutores(autores(entity.getAutores()));
+        entity.setPalavras(palavras(entity.getPalavras()));
+        entity.setTemas(temas(entity.getTemas()));
 
-        entity.getAutores().clear();
-        autores.forEach(c -> {
-            entity.getAutores().add(c);
-        });
+        Usuario usuario = usuarioService.buscarUsuarioLogado();
+
+        if (usuario.getAdmin() == true) {
+            entity.setAprovado(true);
+            entity.setPublicado(true);
+        }
 
         Material material = super.create(entity);
 
@@ -53,5 +70,46 @@ public class MaterialService extends ServiceImpl<Material> {
         return dto;
 
     }
+
+
+    private Set<Tema> temas(Set<Tema> entity) {
+        Set<Tema> temas = new HashSet<>();
+        entity.forEach(e -> {
+            Tema temp = temaService.get(e.getId());
+            if (temp == null) {
+                throw new BadRequestException("Não existe tema com esse id!");
+            }
+            temas.add(temp);
+        });
+
+        return temas;
+    }
+
+    private Set<PalavraChave> palavras(Set<PalavraChave> entity) {
+        Set<PalavraChave> palavras = new HashSet<>();
+        entity.forEach(e -> {
+            PalavraChave temp = palavraChaveService.get(e.getId());
+            if (temp == null) {
+                throw new BadRequestException("Não existe palavra com esse id!");
+            }
+            palavras.add(temp);
+        });
+
+        return palavras;
+    }
+
+    private Set<Autor> autores(Set<Autor> entity) {
+        Set<Autor> autores = new HashSet<>();
+        entity.forEach(e -> {
+            Autor temp = autorService.get(e.getId());
+            if (temp == null) {
+                throw new BadRequestException("Não existe autor com esse id!");
+            }
+            autores.add(temp);
+        });
+
+        return autores;
+    }
+
 
 }
