@@ -10,15 +10,14 @@ import br.furb.inf.furbot.models.usuario.Usuario;
 import br.furb.inf.furbot.repositories.material.MaterialRepository;
 import br.furb.inf.furbot.services.ServiceImpl;
 import br.furb.inf.furbot.services.usuario.UsuarioService;
+import br.furb.inf.furbot.utils.FilterImpl;
+import br.furb.inf.furbot.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class MaterialService extends ServiceImpl<Material> {
@@ -68,6 +67,43 @@ public class MaterialService extends ServiceImpl<Material> {
 
         MaterialRetornoDto dto = new MaterialRetornoDto(material);
         return dto;
+
+    }
+
+    @Transactional
+    public List<MaterialRetornoDto> paraAdmin() {
+        Usuario usuario = usuarioService.buscarUsuarioLogado();
+
+        if (!usuario.getAdmin()) {
+            throw new BadRequestException("Este usuario não tem permissão apra realizar esta ação!");
+        }
+
+        List<Material> list = materialRepository.findByNotAprovado();
+
+        List<MaterialRetornoDto> dto = new ArrayList<>();
+
+        list.forEach(i -> {
+            MaterialRetornoDto temp = new MaterialRetornoDto(i);
+            dto.add(temp);
+        });
+
+
+        return dto;
+
+
+    }
+
+    public Page<MaterialRetornoDto> materiasPublicados(List<Material> materiais) {
+
+
+        Page<MaterialRetornoDto> dto = new Page<>();
+
+        materiais.forEach(i -> {
+            MaterialRetornoDto temp = new MaterialRetornoDto(i);
+            dto.getConteudo().add(temp);
+        });
+        return dto;
+
 
     }
 
