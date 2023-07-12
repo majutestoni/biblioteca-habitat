@@ -42,23 +42,32 @@ public class MaterialController extends ControllerImpl<Material> {
 
     // Materias para admin aprovar
     @GetMapping("/admin")
-    public ResponseEntity<List<MaterialRetornoDto>> paraAprovar() {
-        List<MaterialRetornoDto> dto = materialService.paraAdmin();
+    public ResponseEntity<List<MaterialRetornoDto>> paraAprovar(@Parameter(description = "Filtro genérico para busca", example = "filtro=name IGUAL 'jorge' and idade MAIOR 10 and nome LIKE 'j'") @RequestParam(defaultValue = "") String filtro, //
+                                                                @Parameter(description = "Limite de itens por página") @RequestParam(defaultValue = "0") Integer size, //
+                                                                @Parameter(description = "Navegar entre as paginas") @RequestParam(defaultValue = "0") Integer page, //
+                                                                @Parameter(description = "Ordem que deve retornar os dados", example = "ordenar=nome ASC") @RequestParam(defaultValue = "") String ordenar) {
+        filtro = "aprovado IGUAL false";
+        Page<Material> materials = super.list(filtro, size, page, ordenar).getBody();
+        List<MaterialRetornoDto> MaterialRetornoDto = materialService.materiasPublicados(materials.getConteudo());
 
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(MaterialRetornoDto);
 
     }
 
 
     @GetMapping("/publicados")
-    public ResponseEntity<Page<MaterialRetornoDto>> publicados(@Parameter(description = "Filtro genérico para busca", example = "filtro=name IGUAL 'jorge' and idade MAIOR 10 and nome LIKE 'j'") @RequestParam(defaultValue = "") String filtro, //
+    public ResponseEntity<List<MaterialRetornoDto>> publicados(@Parameter(description = "Filtro genérico para busca", example = "filtro=name IGUAL 'jorge' and idade MAIOR 10 and nome LIKE 'j'") @RequestParam(defaultValue = "") String filtro, //
                                                                @Parameter(description = "Limite de itens por página") @RequestParam(defaultValue = "0") Integer size, //
                                                                @Parameter(description = "Navegar entre as paginas") @RequestParam(defaultValue = "0") Integer page, //
                                                                @Parameter(description = "Ordem que deve retornar os dados", example = "ordenar=nome ASC") @RequestParam(defaultValue = "") String ordenar) {
-        List<Material> materials = super.list(filtro, size, page, ordenar).getBody().getConteudo();
 
-        Page<MaterialRetornoDto> materiaisPublicados = materialService.materiasPublicados(materials);
-        return ResponseEntity.ok().body(materiaisPublicados);
+        filtro = "publicado IGUAL true";
+        Page<Material> materials = super.list(filtro, size, page, ordenar).getBody();
+
+        List<MaterialRetornoDto> MaterialRetornoDto = materialService.materiasPublicados(materials.getConteudo());
+
+
+        return ResponseEntity.ok().body(MaterialRetornoDto);
     }
 
 

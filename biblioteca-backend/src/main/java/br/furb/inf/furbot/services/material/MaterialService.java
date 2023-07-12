@@ -93,14 +93,14 @@ public class MaterialService extends ServiceImpl<Material> {
 
     }
 
-    public Page<MaterialRetornoDto> materiasPublicados(List<Material> materiais) {
+    public List<MaterialRetornoDto> materiasPublicados(List<Material> materiais) {
 
 
-        Page<MaterialRetornoDto> dto = new Page<>();
+        List<MaterialRetornoDto> dto = new ArrayList<>();
 
         materiais.forEach(i -> {
             MaterialRetornoDto temp = new MaterialRetornoDto(i);
-            dto.getConteudo().add(temp);
+            dto.add(temp);
         });
         return dto;
 
