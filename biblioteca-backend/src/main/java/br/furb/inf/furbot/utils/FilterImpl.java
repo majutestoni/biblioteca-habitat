@@ -31,7 +31,11 @@ public class FilterImpl {
 				String[] fss = fs.split(" ");
 				String right = "";
 				for (int i = 2; i < fss.length; i++) {
-					right += fss[i];
+					if (i != fss.length - 1) {
+						right += fss[i] + " ";
+					} else {
+						right += fss[i];
+					}
 				}
 				FilterQueryImpl query = new FilterQueryImpl();
 				query.setField(fss[0]);

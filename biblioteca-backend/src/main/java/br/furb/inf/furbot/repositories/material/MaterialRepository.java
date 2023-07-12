@@ -13,7 +13,8 @@ import java.util.UUID;
 @Repository
 public interface MaterialRepository extends JpaRepository<Material, UUID>, MaterialCustomRepository {
 
-    @Query(value = "select * from material m where m.aprovado is false", nativeQuery = true)
-    List<Material> findByNotAprovado();
+    @Query(value = "select * from material m where m.aprovado  is false and m.atualizado_em < DATE_SUB(NOW(), INTERVAL 6 MONTH) and m.criado_por <> m.atualizado_por", nativeQuery = true)
+    List<Material> materiasVencidos();
+
 
 }

@@ -48,7 +48,7 @@ public class MaterialController extends ControllerImpl<Material> {
                                                                 @Parameter(description = "Ordem que deve retornar os dados", example = "ordenar=nome ASC") @RequestParam(defaultValue = "") String ordenar) {
         filtro = "aprovado IGUAL false";
         Page<Material> materials = super.list(filtro, size, page, ordenar).getBody();
-        List<MaterialRetornoDto> MaterialRetornoDto = materialService.materiasPublicados(materials.getConteudo());
+        List<MaterialRetornoDto> MaterialRetornoDto = materialService.materiaisForDto(materials.getConteudo());
 
         return ResponseEntity.ok(MaterialRetornoDto);
 
@@ -64,10 +64,16 @@ public class MaterialController extends ControllerImpl<Material> {
         filtro = "publicado IGUAL true";
         Page<Material> materials = super.list(filtro, size, page, ordenar).getBody();
 
-        List<MaterialRetornoDto> MaterialRetornoDto = materialService.materiasPublicados(materials.getConteudo());
-
+        List<MaterialRetornoDto> MaterialRetornoDto = materialService.materiaisForDto(materials.getConteudo());
 
         return ResponseEntity.ok().body(MaterialRetornoDto);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> limparVencidos() {
+        String retorno = materialService.limpaDeMateriais();
+
+        return ResponseEntity.ok().body(retorno);
     }
 
 

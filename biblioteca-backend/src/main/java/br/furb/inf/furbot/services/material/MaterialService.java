@@ -70,31 +70,7 @@ public class MaterialService extends ServiceImpl<Material> {
 
     }
 
-    @Transactional
-    public List<MaterialRetornoDto> paraAdmin() {
-        Usuario usuario = usuarioService.buscarUsuarioLogado();
-
-        if (!usuario.getAdmin()) {
-            throw new BadRequestException("Este usuario não tem permissão apra realizar esta ação!");
-        }
-
-        List<Material> list = materialRepository.findByNotAprovado();
-
-        List<MaterialRetornoDto> dto = new ArrayList<>();
-
-        list.forEach(i -> {
-            MaterialRetornoDto temp = new MaterialRetornoDto(i);
-            dto.add(temp);
-        });
-
-
-        return dto;
-
-
-    }
-
-    public List<MaterialRetornoDto> materiasPublicados(List<Material> materiais) {
-
+    public List<MaterialRetornoDto> materiaisForDto(List<Material> materiais) {
 
         List<MaterialRetornoDto> dto = new ArrayList<>();
 
@@ -106,6 +82,23 @@ public class MaterialService extends ServiceImpl<Material> {
 
 
     }
+
+    public String limpaDeMateriais(){
+
+        if(!usuarioService.buscarUsuarioLogado().getAdmin()){
+            throw new BadRequestException("Seu usuario não tem permissão para esta ação!");
+        } ;
+
+        List<Material> vencidos = materialRepository.materiasVencidos();
+
+        vencidos.forEach(i -> {
+            materialRepository.delete(i);
+        });
+
+        return "A quantidade de materiais excluidos foi de " + vencidos.size();
+
+    }
+
 
 
     private Set<Tema> temas(Set<Tema> entity) {
