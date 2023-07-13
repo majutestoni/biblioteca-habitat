@@ -46,6 +46,8 @@ public class MaterialController extends ControllerImpl<Material> {
                                                                 @Parameter(description = "Limite de itens por página") @RequestParam(defaultValue = "0") Integer size, //
                                                                 @Parameter(description = "Navegar entre as paginas") @RequestParam(defaultValue = "0") Integer page, //
                                                                 @Parameter(description = "Ordem que deve retornar os dados", example = "ordenar=nome ASC") @RequestParam(defaultValue = "") String ordenar) {
+
+       materialService.valid();
         filtro = "aprovado IGUAL false";
         Page<Material> materials = super.list(filtro, size, page, ordenar).getBody();
         List<MaterialRetornoDto> MaterialRetornoDto = materialService.materiaisForDto(materials.getConteudo());
@@ -61,7 +63,7 @@ public class MaterialController extends ControllerImpl<Material> {
                                                                @Parameter(description = "Navegar entre as paginas") @RequestParam(defaultValue = "0") Integer page, //
                                                                @Parameter(description = "Ordem que deve retornar os dados", example = "ordenar=nome ASC") @RequestParam(defaultValue = "") String ordenar) {
 
-        filtro = "publicado IGUAL true";
+        filtro = "aprovado IGUAL true";
         Page<Material> materials = super.list(filtro, size, page, ordenar).getBody();
 
         List<MaterialRetornoDto> MaterialRetornoDto = materialService.materiaisForDto(materials.getConteudo());

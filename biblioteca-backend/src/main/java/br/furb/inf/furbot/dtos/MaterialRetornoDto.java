@@ -21,7 +21,7 @@ public class MaterialRetornoDto {
     private String descricao;
     private Tipo tipo;
     private String link;
-    private boolean publicado;
+    private boolean editar;
     private  boolean aprovado;
 
     private ArrayList<AutoresRetornoDto> autoresRetornoDtos;
@@ -34,7 +34,7 @@ public class MaterialRetornoDto {
         this.descricao = material.getDescricao();
         this.tipo = material.getTipo();
         this.link = material.getLink();
-        this.publicado = material.isPublicado();
+        this.editar = material.isEditar();
         this.aprovado = material.isAprovado();
 
         ArrayList<AutoresRetornoDto> autores = new ArrayList<>();

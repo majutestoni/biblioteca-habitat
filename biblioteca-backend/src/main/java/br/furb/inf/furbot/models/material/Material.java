@@ -53,7 +53,7 @@ public class Material extends ModelImpl {
     private int avaliacao;
 
     @Column(nullable = true)
-    private boolean publicado;
+    private boolean editar;
 
     @Column(nullable = true)
     private boolean aprovado;

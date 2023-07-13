@@ -60,7 +60,6 @@ public class MaterialService extends ServiceImpl<Material> {
 
         if (usuario.getAdmin() == true) {
             entity.setAprovado(true);
-            entity.setPublicado(true);
         }
 
         Material material = super.create(entity);
@@ -69,6 +68,15 @@ public class MaterialService extends ServiceImpl<Material> {
         return dto;
 
     }
+
+    public boolean valid(){
+        if(!usuarioService.buscarUsuarioLogado().getAdmin()){
+            throw new BadRequestException("Seu usuario não tem permissão para esta ação!");
+        } ;
+
+        return true;
+    }
+
 
     public List<MaterialRetornoDto> materiaisForDto(List<Material> materiais) {
 
