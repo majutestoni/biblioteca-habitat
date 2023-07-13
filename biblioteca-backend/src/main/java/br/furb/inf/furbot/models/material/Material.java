@@ -31,7 +31,7 @@ public class Material extends ModelImpl {
     private String titulo;
 
     @Column(name = "ano")
-    private Date ano;
+    private Integer ano;
 
     @NotNull(message = "descricao não pode ser núlo")
     @NotEmpty(message = "descricao não pode ser vazio")

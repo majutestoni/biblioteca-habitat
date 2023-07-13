@@ -19,6 +19,7 @@ public class MaterialRetornoDto {
     private UUID id;
     private String titulo;
     private String descricao;
+    private Integer ano;
     private Tipo tipo;
     private String link;
     private boolean editar;
@@ -36,6 +37,7 @@ public class MaterialRetornoDto {
         this.link = material.getLink();
         this.editar = material.isEditar();
         this.aprovado = material.isAprovado();
+        this.ano = material.getAno();
 
         ArrayList<AutoresRetornoDto> autores = new ArrayList<>();
         ArrayList<PalavraRetornoDto> palavras = new ArrayList<>();

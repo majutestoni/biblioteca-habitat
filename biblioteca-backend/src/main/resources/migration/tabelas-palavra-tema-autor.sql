@@ -46,13 +46,14 @@ CREATE TABLE IF NOT EXISTS material (
     atualizado_por char(36) DEFAULT NULL,
     criado_por char(36) DEFAULT NULL,
     titulo varchar(150) NOT NULL,
-    ano datetime(6) DEFAULT NULL,
+    ano YEAR(4) DEFAULT NULL,
     descricao varchar(255) NOT NULL,
     tipo varchar(60) NOT NULL,
     link varchar(255) NOT NULL,
     idioma varchar(150) NOT NULL,
     avaliacao INT(11) NOT NULL,
     publicado bit(1) DEFAULT FALSE,
+    editar bit(1) DEFAULT FALSE,
     PRIMARY KEY (`uuid`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
