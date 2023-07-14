@@ -72,6 +72,22 @@ public abstract class ModelImpl implements Serializable {
 		this.atualizadoEm = atualizadoEm;
 	}
 
+	public String getCriadoPor() {
+		return criadoPor;
+	}
+
+	public void setCriadoPor(String criadoPor) {
+		this.criadoPor = criadoPor;
+	}
+
+	public String getAtualizadoPor() {
+		return atualizadoPor;
+	}
+
+	public void setAtualizadoPor(String atualizadoPor) {
+		this.atualizadoPor = atualizadoPor;
+	}
+
 	public UUID getId() {
 		return id;
 	}

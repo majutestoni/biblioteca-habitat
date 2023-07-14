@@ -11,6 +11,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MenuModule } from '../menu/menu.module';
 import { NovoAdminPage } from './novo/novo.page';
 import { HeaderModule } from '../header/header.module';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { modalModule } from 'src/app/shared/componentes/modal/modal.module';
 
 @NgModule({
     imports: [
@@ -25,6 +29,10 @@ import { HeaderModule } from '../header/header.module';
         MenuModule,
         HeaderModule,
         ReactiveFormsModule,
+        MatPaginatorModule,
+        MatMenuModule,
+        MatButtonModule,
+        modalModule
         
       
     ],

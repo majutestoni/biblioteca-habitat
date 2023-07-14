@@ -1,5 +1,11 @@
 @import '../../../theme/variables.scss';
 
+button {
+    outline: 0;
+    font-size: 12pt;
+}
+
+
 table {
   width: 100%;
 
@@ -9,10 +15,6 @@ table {
 }
 
 
-.menu{
-  position: absolute;
-  z-index: 10;
-}
 .container {
     width: 60%;
     margin-top: 10vh;
