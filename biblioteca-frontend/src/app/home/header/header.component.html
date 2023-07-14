@@ -1,11 +1,21 @@
 <ion-header [translucent]="true">
     <div class="container-header">
-        <div>
-            <img src="../../../assets/icon/favicon.png" alt="" height="90vh" />
-        </div>
+
+
+
         <menu>
-            <a [routerLink]="['/home']">Inicio</a>
-            <a *ngIf="!loggedUser" [routerLink]="['/auth']">Fazer cadastro</a>
+
+        <app-menu class="dpmenu"[menus]="produtosDidaticos"></app-menu>
+          <div>
+            <img class="img" src="../../../assets/icon/favicon.png" alt="" height="90vh" />
+        </div>
+
+
+        <div>
+          <a [routerLink]="['/home']">Inicio</a>
+          <a *ngIf="!loggedUser" [routerLink]="['/auth']">Fazer cadastro</a>
+        </div>
+
             <a *ngIf="loggedUser" [routerLink]="['/auth']">Cadastrar Material</a>
             <!--If caso esteja logado e caso não-->
             <div class="user" *ngIf="loggedUser">
@@ -17,6 +27,6 @@
                     <button class="novo-menu" mat-menu-item>Inicio</button>
                 </mat-menu>
             </div>
-        </menu>
+          </menu>
     </div>
 </ion-header>

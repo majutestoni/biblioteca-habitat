@@ -1,48 +1,53 @@
 @import '../../../theme/variables.scss';
 
-.example-container {
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: none;
+}
+
+.dropbtn {
+    font-size: 15pt;
+    color: $primary-contrast;
+    background-color: $color-primary;
+    border-radius: 0;
+    transition: none;
+}
+
+.dropbtn::after {
+    content: '';
     position: absolute;
-    z-index: 100;
-    top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
-    background: transparent;
+    bottom: 2px; /* Ajuste a altura da sublinha conforme necessário */
+    width: 0;
+    height: 0.1rem; /* Ajuste a espessura da sublinha conforme necessário */
+    background-color: $primary-contrast; /* Cor da sublinha */
+    transition: width 0.3s ease; /* Duração e transição da animação */
 }
 
-.sidenav-container {
-    height: 100%;
-    z-index: 100;
+.dropbtn:hover::after {
+    width: 100%; /* A sublinha se expandirá da esquerda para a direita ao passar o mouse */
 }
 
-.sidenav {
-    width: 200px;
-    z-index: 100;
-}
-.burguer {
+.dropdown-content {
     display: none;
-    margin-left: 0.5rem;
-    margin-top: 3vh;
-    z-index: 100;
+    position: absolute;
+    background-color: $primary-contrast;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.753);
+    border-radius: 4px;
+    z-index: 1;
 }
 
-.menu {
-    border-right: 1px solid $color-primary;
-    width: 15%;
-    .buttons {
-        margin-top: -50%;
-        display: flex;
-        height: 100vh;
-        flex-direction: column;
-        justify-content: center;
-    }
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
-@media screen and (max-width: 970px) {
-    .menu {
-        display: none;
-    }
-    .burguer {
-        display: block;
-    }
+.dropdown-content a {
+    padding: 9px 16px;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #17682e61;
 }

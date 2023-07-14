@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [MenuComponent],
@@ -19,6 +20,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
         MatButtonModule,
         RouterModule,
         MatSidenavModule,
+        MatIconModule
+
     ]
 })
 export class MenuModule {}

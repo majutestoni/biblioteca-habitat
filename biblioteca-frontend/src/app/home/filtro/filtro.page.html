@@ -1,39 +1,93 @@
 <div>
-        <ion-card class="filtro">
-            <ion-card class="pesquisa">
-                <ion-card-content class="body row">
-                    <div class="col-lg-6 col-md-12">
-                        <mat-form-field appearance="outline" class="input">
-                            <mat-label>Titulo do material</mat-label>
-                            <input matInput />
-                        </mat-form-field>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <mat-form-field appearance="outline" class="input">
-                            <mat-label>Autor do material</mat-label>
-                            <input matInput />
-                        </mat-form-field>
-                    </div>
-                    <div class="col-lg-6 col-sm-12">
-                        <mat-form-field appearance="outline" class="input">
-                            <mat-label>Data inicial</mat-label>
-                            <input matInput />
-                        </mat-form-field>
-                    </div>
-                    <div class="col-lg-6 col-sm-12">
-                        <mat-form-field appearance="outline" class="input">
-                            <mat-label>Data final</mat-label>
-                            <input matInput />
-                        </mat-form-field>
-                    </div>
-                </ion-card-content>
+  <ion-card class="filtro">
+    <ion-card class="pesquisa">
+      <ion-card-content class="body row">
 
-                <ion-row class="ion-justify-content-end ion-align-items-end">
-                    <ion-button size="medium" type="submit" class="mt-4"> Filtrar</ion-button>
-                </ion-row>
-            </ion-card>
-        </ion-card>
-        <div class="conteudo mt-5">
-            <span>Aqui vai conteudos adicionados recentemente ou com mais likes</span>
+        <div class="col-lg-4 col-sm-12">
+          <ion-list>
+            <ion-item fill="solid">
+              <ion-select class="select" interface="popover" placeholder="Escolha">
+                <ion-select-option value="titulo">Título</ion-select-option>
+                <ion-select-option value="autor">Autor</ion-select-option>
+                <ion-select-option value="dataInicial">Data inicial</ion-select-option>
+                <ion-select-option value="dataFinal">Data final</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
         </div>
-    </div>
+        <div class="col-lg-8 col-md-12">
+          <ion-item fill="solid" class="input">
+
+            <ion-label>Pesquisa</ion-label>
+            <ion-input placeholder="Enter text"></ion-input>
+
+          </ion-item>
+        </div>
+
+      </ion-card-content>
+
+      <ion-row class="ion-justify-content-end ion-align-items-end">
+        <ion-button size="medium" type="submit" class="mt-4">Pesquisar</ion-button>
+      </ion-row>
+    </ion-card>
+  </ion-card>
+
+
+  <ul class="cards">
+    <li class="card">
+      <ion-card class="conteudo-card">
+        <img alt="Silhouette of mountains"
+          src="https://img.freepik.com/fotos-gratis/reserve-na-biblioteca-com-livro-aberto_1150-5920.jpg?w=826&t=st=1689021946~exp=1689022546~hmac=47cfabdf628e6056a73ed71d103cf4364b33e553085bf2dfdbfb022b56e4801d" />
+        <ion-card-header>
+          <ion-card-title>Conteudo1</ion-card-title>
+          <ion-card-subtitle>Conteudo add recentemente</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-card>
+    </li>
+
+    <li class="card">
+      <ion-card class="conteudo-card">
+        <img alt="Silhouette of mountains"
+          src="https://img.freepik.com/fotos-gratis/reserve-na-biblioteca-com-livro-aberto_1150-5920.jpg?w=826&t=st=1689021946~exp=1689022546~hmac=47cfabdf628e6056a73ed71d103cf4364b33e553085bf2dfdbfb022b56e4801d" />
+        <ion-card-header>
+          <ion-card-title>Conteudo1</ion-card-title>
+          <ion-card-subtitle>Conteudo add recentemente</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-card>
+    </li>
+
+    <li class="card">
+      <ion-card class="conteudo-card">
+        <img alt="Silhouette of mountains"
+          src="https://img.freepik.com/fotos-gratis/reserve-na-biblioteca-com-livro-aberto_1150-5920.jpg?w=826&t=st=1689021946~exp=1689022546~hmac=47cfabdf628e6056a73ed71d103cf4364b33e553085bf2dfdbfb022b56e4801d" />
+        <ion-card-header>
+          <ion-card-title>Conteudo1</ion-card-title>
+          <ion-card-subtitle>Conteudo add recentemente</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-card>
+    </li>
+
+    <li class="card">
+      <ion-card class="conteudo-card">
+        <img alt="Silhouette of mountains"
+          src="https://img.freepik.com/fotos-gratis/reserve-na-biblioteca-com-livro-aberto_1150-5920.jpg?w=826&t=st=1689021946~exp=1689022546~hmac=47cfabdf628e6056a73ed71d103cf4364b33e553085bf2dfdbfb022b56e4801d" />
+        <ion-card-header>
+          <ion-card-title>Conteudo1</ion-card-title>
+          <ion-card-subtitle>Conteudo add recentemente</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </ion-card-content>
+      </ion-card>
+    </li>
+  </ul>
+</div>

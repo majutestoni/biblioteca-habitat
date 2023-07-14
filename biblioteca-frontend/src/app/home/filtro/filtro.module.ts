@@ -10,6 +10,7 @@ import { FiltroPageRoutingModule } from './filtro-routing.module';
 import { MenuModule } from '../menu/menu.module';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatCardModule } from '@angular/material/card';
         FiltroPageRoutingModule,
         MenuModule,
         RouterModule,
-        MatCardModule
+        MatCardModule,
+        MatSelectModule
     ],
     declarations: [FiltroPage],
     exports: [FiltroPage]

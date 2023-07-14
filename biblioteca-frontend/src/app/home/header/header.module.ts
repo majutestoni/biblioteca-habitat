@@ -7,18 +7,22 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { FiltroPageModule } from '../filtro/filtro.module';
 import { RouterModule } from '@angular/router';
+import { MenuModule } from "../menu/menu.module";
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
-  declarations: [HeaderComponent],
-  exports: [HeaderComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    MatMenuModule,
-    MatButtonModule,
-    FiltroPageModule,
-    RouterModule
-  ]
+    declarations: [HeaderComponent],
+    exports: [HeaderComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        MatMenuModule,
+        MatButtonModule,
+        FiltroPageModule,
+        RouterModule,
+        MenuModule,
+        MatIconModule
+    ]
 })
 export class HeaderModule {}

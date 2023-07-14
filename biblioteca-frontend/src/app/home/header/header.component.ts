@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Input } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AppStorageService } from 'src/app/core/app-storage/app-storage.service';
@@ -10,6 +10,7 @@ import { AdminPage } from '../admin/admin.page';
     styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    @Input() public menus = [];
     public loggedUser = null;
     public isAdmin = false;
     @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
@@ -53,4 +54,15 @@ export class HeaderComponent implements OnInit {
         localStorage.clear();
         this.loggedUser = null;
     }
+
+    public produtosDidaticos = [
+      { label: 'Livros', router: '' },
+      { label: 'Artigos', router: '' },
+      { label: 'Videos', router: '' },
+      { label: 'TCC', router: '' },
+      { label: 'Reportagens', router: '' },
+      { label: 'Sites', router: '' },
+      { label: 'Cursos', router: '' },
+      { label: 'Prod. educacionais', router: '' }
+  ];
 }

@@ -22,5 +22,8 @@ export class MenuComponent implements OnInit {
 
     constructor(private router: Router) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+
+      console.log(this.menus)
+    }
 }
