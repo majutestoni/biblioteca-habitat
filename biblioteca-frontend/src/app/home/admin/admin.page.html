@@ -1,8 +1,5 @@
 <ion-content>
     <app-header></app-header>
-    <div class="menu">
-        <app-menu [menus]="menuAdmin"></app-menu>
-    </div>
     <div class="container">
         <h1>Bem vindo administrador(a)!</h1>
         <h3>
@@ -15,38 +12,47 @@
             <li>Negado</li>
         </ul>
 
-        <div class="mt-5">
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="materiais">
                 <!-- Position Column -->
                 <ng-container matColumnDef="id">
-                    <th mat-header-cell *matHeaderCellDef>Id</th>
+                    <th mat-header-cell *matHeaderCellDef>id</th>
                     <td mat-cell *matCellDef="let element">{{element.id}}</td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="titulo">
-                    <th mat-header-cell *matHeaderCellDef>Titulo</th>
+                    <th mat-header-cell *matHeaderCellDef>titulo</th>
                     <td mat-cell *matCellDef="let element">{{element.titulo}}</td>
                 </ng-container>
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="publicador">
-                    <th mat-header-cell *matHeaderCellDef>Publicador</th>
-                    <td mat-cell *matCellDef="let element">{{element.publicador}}</td>
+                <ng-container matColumnDef="colaborador">
+                    <th mat-header-cell *matHeaderCellDef>Colaborador</th>
+                    <td mat-cell *matCellDef="let element">{{element.colaborador}}</td>
                 </ng-container>
 
-                <!-- Symbol Column -->
                 <ng-container matColumnDef="acao">
-                    <th mat-header-cell *matHeaderCellDef>Ação</th>
-                    <td mat-cell *matCellDef="let element">{{element.acao}}</td>
+                    <th mat-header-cell *matHeaderCellDef>Acao</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button class="button-menu" mat-button [matMenuTriggerFor]="menu">▾</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="aprovar(element.id)">Aprovar</button>
+                            <button mat-menu-item (click)="reprovar(element.id)">Reprovar</button>
+                            <button  mat-menu-item (click)="openDialog(element.id)">Ver detalhes</button>
+                        </mat-menu>
+                    </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+
+            <mat-paginator
+                [pageSize]="pageSize"
+                showFirstLastButtons
+                aria-label="Select page of periodic elements"
+            >
+            </mat-paginator>
         </div>
     </div>
 </ion-content>

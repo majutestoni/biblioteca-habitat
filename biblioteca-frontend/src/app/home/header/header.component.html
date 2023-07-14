@@ -13,6 +13,7 @@
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item (click)="paraUsuario()">Editar Perfil</button>
                     <button *ngIf="isAdmin" (click)="paraAdministrador()" mat-menu-item>Pagina do admin</button>
+                    <button mat-menu-item >Meus materiais</button>
                     <button mat-menu-item (click)="logout()">Sair</button>
                     <button class="novo-menu" mat-menu-item>Inicio</button>
                 </mat-menu>

@@ -1,30 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
-const ELEMENT_DATA = [
-    {id: 1, titulo: 'Hydrogen', publicador: 1.0079, acao: 'H'},
-    {id: 2, titulo: 'Helium', publicador: 4.0026, acao: 'He'},
-    {id: 3, titulo: 'Lithium', publicador: 6.941, acao: 'Li'},
-    {id: 4, titulo: 'Beryllium', publicador: 9.0122, acao: 'Be'},
-    {id: 5, titulo: 'Boron', publicador: 10.811, acao: 'B'},
-    {id: 6, titulo: 'Carbon', publicador: 12.0107, acao: 'C'},
-    {id: 7, titulo: 'Nitrogen', publicador: 14.0067, acao: 'N'},
-    {id: 8, titulo: 'Oxygen', publicador: 15.9994, acao: 'O'},
-    {id: 9, titulo: 'Fluorine', publicador: 18.9984, acao: 'F'},
-    {id: 10, titulo: 'Neon', publicador: 20.1797, acao: 'Ne'},
-  ];
+import { Material, MaterialService } from 'src/app/core/entidades/material/material.service';
+import { ModalComponent } from 'src/app/shared/componentes/modal/modal.component';
 @Component({
     selector: 'app-admin',
     templateUrl: 'admin.page.html',
     styleUrls: ['admin.page.scss']
 })
 export class AdminPage implements OnInit {
-    constructor(private router:Router) {}
+    constructor(private router: Router, private materialService: MaterialService, public dialog: MatDialog) {}
+
+    public materiais: Material[];
+    public pageSize: number;
+
+    displayedColumns: string[] = ['id', 'titulo', 'colaborador', 'acao'];
+
+    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
+    someMethod() {
+        this.trigger.openMenu();
+    }
+    ngOnInit(): void {
+        this.materialService.paraAprovar().subscribe((e) => {
+            this.materiais = e.conteudo;
+            this.pageSize = e.totalPaginas
+        });
+    }
+
+    openDialog(id: string): void {
+        this.materialService.getById(id).subscribe(e => {
+            const dialogRef = this.dialog.open(ModalComponent, {
+                data: {material: e},
+              });
+        })
 
     
-    dataSource = ELEMENT_DATA;
-    displayedColumns: string[] = ['id', 'titulo', 'publicador', 'acao'];
-    ngOnInit(): void {
+      
     }
+    
 
     public menuAdmin = [
         { label: 'Materias em triagem', action: this.gotToAdmin.bind(this) },
@@ -38,4 +53,11 @@ export class AdminPage implements OnInit {
         this.router.navigateByUrl('/home/admin/novo');
     }
 
+    aprovar(id: string){
+        console.log(id)
+    }
+
+    reprovar(id: string){
+        console.log(id)
+    }
 }
